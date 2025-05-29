@@ -13,7 +13,7 @@ function ProfessionalLife() {
             <div className="w-full md:w-1/3 flex justify-center">
               <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-blue-100 shadow-soft">
                 <img 
-                  src="/assets/images/professional-headshot.jpg" 
+                  src="/assets/images/perfil.jpg" 
                   alt="Álvaro Puertas" 
                   className="w-full h-full object-cover"
                   onError={(e) => {

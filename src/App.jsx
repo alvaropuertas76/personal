@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Calendar from './pages/Calendar';
@@ -18,7 +18,7 @@ import FutureProjects from './pages/categories/FutureProjects';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/personal">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

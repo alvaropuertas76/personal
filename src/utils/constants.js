@@ -22,12 +22,12 @@ export const NAV_LINKS = [
 
 // Social media and external profile links
 export const SOCIAL_LINKS = {
-  linkedin: "https://www.linkedin.com/in/alvaro-puertas/",
-  github: "https://github.com/alvaropuertas",
+  linkedin: "https://www.linkedin.com/in/alvaropuertaspunal/",
+  github: "https://github.com/alvaropuertas76",
   strava: "https://www.strava.com/athletes/alvaro-puertas",
   garmin: "https://connect.garmin.com/modern/profile/alvaro-puertas",
-  facebook: "https://www.facebook.com/alvaro.puertas",
-  instagram: "https://www.instagram.com/alvaro.puertas/"
+  facebook: "https://www.facebook.com/alvaropuertas76",
+  instagram: "https://www.instagram.com/alvaropuertas76"
 };
 
 // Google Maps configuration
@@ -67,7 +67,7 @@ export const RACE_CATEGORIES = [
 ];
 
 // Placeholder image for when no image is available
-export const PLACEHOLDER_IMAGE = "https://via.placeholder.com/800x450?text=Imagen+No+Disponible";
+export const PLACEHOLDER_IMAGE = "/assets/images/placeholder-race.jpg";
 
 // Hero carousel images for the homepage
 export const HERO_IMAGES = [
