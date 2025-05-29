@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redireccionando...</title>
+  <script>
+    // Redirige todas las solicitudes a la página de inicio con hash
+    const redirectToHome = () => {
+      const path = window.location.pathname.replace('/personal/', '/');
+      window.location.replace(`${window.location.origin}/personal/#${path}`);
+    };
+    
+    // Espera a que el documento esté listo
+    document.addEventListener('DOMContentLoaded', redirectToHome);
+    // En caso de que el evento DOMContentLoaded ya haya disparado
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+      redirectToHome();
+    }
+  </script>
+</head>
+<body>
+  <p>Redireccionando...</p>
+</body>
+</html>
