@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+// Importar constante de imagen placeholder
+import { PLACEHOLDER_IMAGE } from '../utils/constants';
+
 function NextChallenges() {
   const [activeTab, setActiveTab] = useState("upcoming");
   
@@ -186,6 +189,10 @@ function NextChallenges() {
                     src={race.image} 
                     alt={race.title} 
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = PLACEHOLDER_IMAGE;
+                    }}
                   />
                 </div>
                 <div className="p-6 flex-grow">
@@ -348,6 +355,10 @@ function NextChallenges() {
                     src={race.image} 
                     alt={race.title} 
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = PLACEHOLDER_IMAGE;
+                    }}
                   />
                   <div className="absolute top-0 right-0 m-3">
                     <span className="bg-black bg-opacity-75 text-white px-3 py-1 rounded-full text-xs">
