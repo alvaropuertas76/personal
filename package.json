@@ -3,16 +3,16 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "homepage": "https://alvaropuertas76.github.io/personal/",
+  "homepage": "https://alvaropuertas76.github.io/personal",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint ./src --quiet",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "node deploy.js"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",

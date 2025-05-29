@@ -15,36 +15,52 @@ if (!existsSync(distPath)) {
 try {
   // Change to the dist directory
   process.chdir(distPath);
+  
   // Initialize git repo
   execSync('git init', { stdio: 'inherit' });
   
-  // Configure git (if not already configured)
-  try {
-    execSync('git config user.name "GitHub Actions"', { stdio: 'inherit' });
-    execSync('git config user.email "actions@github.com"', { stdio: 'inherit' });
-  } catch (error) {
-    console.log('Warning: Could not configure git user. If deployment fails, configure git manually.');
-  }
-    // Create .nojekyll file to bypass Jekyll processing (Windows compatible)
+  // Configure git
+  execSync('git config user.name "alvaropuertas76"', { stdio: 'inherit' });
+  execSync('git config user.email "alvaropuertas76@gmail.com"', { stdio: 'inherit' });
+  execSync('git config credential.username "alvaropuertas76"', { stdio: 'inherit' });
+  
+  // Create .nojekyll file to bypass Jekyll processing
   try {
     execSync('type nul > .nojekyll', { stdio: 'inherit' });
   } catch (error) {
-    // Fallback for PowerShell
-    try {
-      execSync('echo $null >> .nojekyll', { stdio: 'inherit' });
-    } catch (innerError) {
-      console.log('Warning: Could not create .nojekyll file. Continuing anyway...');
-    }
+    console.log('Warning: Could not create .nojekyll file. Continuing anyway...');
   }
   
   // Add all files
   execSync('git add -A', { stdio: 'inherit' });
   
-  // Commit
-  execSync('git commit -m "Deploy to GitHub Pages"', { stdio: 'inherit' });
+  // Force commit even if no changes
+  try {
+    execSync('git commit -m "Deploy to GitHub Pages"', { stdio: 'inherit' });
+  } catch (error) {
+    console.log('No changes to commit, continuing with deployment...');
+  }
   
-  // Push to gh-pages branch forcing update
-  execSync('git push -f https://github.com/alvaropuertas76/personal.git master:gh-pages', { stdio: 'inherit' });
+  // Push to gh-pages branch 
+  try {
+    // First try with HTTPS
+    execSync('git remote add origin https://github.com/alvaropuertas76/personal.git', { stdio: 'inherit' });
+    execSync('git push -f origin master:gh-pages', { stdio: 'inherit' });
+  } catch (error) {
+    console.error('Push error with HTTPS:', error.message);
+    
+    // Try removing remote if it exists
+    try {
+      execSync('git remote rm origin', { stdio: 'inherit' });
+    } catch (remoteError) {
+      // Ignore errors here
+    }
+    
+    // Try with SSH as fallback
+    console.log('Trying SSH authentication...');
+    execSync('git remote add origin git@github.com:alvaropuertas76/personal.git', { stdio: 'inherit' });
+    execSync('git push -f origin master:gh-pages', { stdio: 'inherit' });
+  }
   
   console.log('Deployment complete!');
 } catch (error) {
