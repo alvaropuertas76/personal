@@ -17,7 +17,7 @@ function NextChallenges() {
       distance: "42.2 km",
       description: "A scenic marathon through the beautiful Basque city, featuring the iconic Guggenheim Museum and riverside views.",
       status: "registered",
-      image: "/assets/images/bilbao.jpeg"
+      image: "./assets/images/bilbao.jpeg"
     },
     {
       id: "zaragoza-marathon-2024",
@@ -27,7 +27,7 @@ function NextChallenges() {
       distance: "42.2 km",
       description: "Fast and flat course through historic Zaragoza, perfect for setting a personal record.",
       status: "planned",
-      image: "/assets/images/zaragoza.jpg"
+      image: "./assets/images/zaragoza.jpg"
     },
     {
       id: "atacama-crossing-2025",
@@ -37,7 +37,7 @@ function NextChallenges() {
       distance: "250 km",
       description: "A 7-day, 6-stage, 250 km race across the driest desert on Earth. Self-supported race in extreme conditions.",
       status: "training",
-      image: "/assets/images/atacama.jpg"
+      image: "./assets/images/atacama.jpg"
     },
     {
       id: "warsaw-marathon-2025",

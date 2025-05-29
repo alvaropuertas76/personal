@@ -184,7 +184,7 @@ function FutureProjects() {
           <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
             <div className="h-48 overflow-hidden">
               <img 
-                src="/assets/images/utmb.jpg" 
+                src="./assets/images/utmb.jpg" 
                 alt="UTMB" 
                 className="w-full h-full object-cover"
               />
@@ -217,7 +217,7 @@ function FutureProjects() {
           <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
             <div className="h-48 overflow-hidden">
               <img 
-                src="/assets/images/badwater.jpg" 
+                src="./assets/images/badwater.jpg" 
                 alt="Badwater 135" 
                 className="w-full h-full object-cover"
               />
