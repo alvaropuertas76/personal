@@ -14,7 +14,7 @@ function Triathlons() {
       location: "Can Picafort, Mallorca, Spain",
       distance: "Sprint",
       finishTime: "1:15:22",
-      image: "/assets/images/can-picafort.jpg"
+      image: "./assets/images/can-picafort.jpg"
     },
     {
       id: "palma-2014",
@@ -23,7 +23,7 @@ function Triathlons() {
       location: "Palma, Mallorca, Spain",
       distance: "Olympic",
       finishTime: "2:14:46",
-      image: "/assets/images/palma-triathlon-2014.jpg"
+      image: "./assets/images/palma-triathlon-2014.jpg"
     },
     {
       id: "swim-run-alcudia-2014",
@@ -32,7 +32,7 @@ function Triathlons() {
       location: "Alcudia, Mallorca, Spain",
       distance: "Swim-Run",
       finishTime: "2:18:29",
-      image: "/assets/images/swimrun-alcudia.jpg"
+      image: "./assets/images/swimrun-alcudia.jpg"
     },
     {
       id: "menorca-2014",
@@ -41,7 +41,7 @@ function Triathlons() {
       location: "Menorca, Spain",
       distance: "70.3",
       finishTime: "5:12:57",
-      image: "/assets/images/ironman-menorca.jpg"
+      image: "./assets/images/ironman-menorca.jpg"
     },
     {
       id: "sa-pobla-2016",
@@ -50,7 +50,7 @@ function Triathlons() {
       location: "Sa Pobla, Mallorca, Spain",
       distance: "Sprint Duathlon",
       finishTime: "1:20:39",
-      image: "/assets/images/sa-pobla-duathlon.jpg"
+      image: "./assets/images/sa-pobla-duathlon.jpg"
     },
     {
       id: "powerman-mallorca-2018",
@@ -59,7 +59,7 @@ function Triathlons() {
       location: "Mallorca, Spain",
       distance: "5-30-5",
       finishTime: "1:36:11",
-      image: "/assets/images/powerman-mallorca.jpg"
+      image: "./assets/images/powerman-mallorca.jpg"
     },
     {
       id: "mallorca-olympic-2018",
@@ -68,7 +68,7 @@ function Triathlons() {
       location: "Mallorca, Spain",
       distance: "Olympic",
       finishTime: "2:21:30",
-      image: "/assets/images/mallorca-olympic.jpg"
+      image: "./assets/images/mallorca-olympic.jpg"
     },
     {
       id: "ironman-frankfurt-2018",
@@ -77,7 +77,7 @@ function Triathlons() {
       location: "Frankfurt, Germany",
       distance: "Full Ironman",
       finishTime: "12:28:36",
-      image: "/assets/images/ironman-frankfurt.jpg"
+      image: "./assets/images/ironman-frankfurt.jpg"
     },
     {
       id: "total-tri-mallorca-2019",
@@ -86,7 +86,7 @@ function Triathlons() {
       location: "Mallorca, Spain",
       distance: "Olympic",
       finishTime: "2:35:56",
-      image: "/assets/images/total-tri-mallorca.jpg"
+      image: "./assets/images/total-tri-mallorca.jpg"
     },
     {
       id: "sprint-andratx-2019",
@@ -95,7 +95,7 @@ function Triathlons() {
       location: "Andratx, Mallorca, Spain",
       distance: "Sprint",
       finishTime: "DNF",
-      image: "/assets/images/sprint-andratx.jpg"
+      image: "./assets/images/sprint-andratx.jpg"
     },
     {
       id: "ironman-marbella-2023",

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redireccionando...</title>
+  <script>
+    // Configuración de singlepage app para GitHub Pages
+    // Basado en https://github.com/rafgraph/spa-github-pages
+    (function() {
+      // Extraer el pathname de la URL actual
+      var pathSegmentsToKeep = 1; // Ajustar según la profundidad de tu repo
+      var l = window.location;
+      var segmentCount = 0;
+      var repository = "/personal"; // Nombre de tu repositorio
+
+      // Verificar si estamos en una ruta de GitHub Pages
+      if (l.pathname.indexOf(repository) > -1) {
+        segmentCount = l.pathname.split('/').length - 1;
+        pathSegmentsToKeep = 2; // Para tener en cuenta /personal/ en la URL
+      }
+      
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, pathSegmentsToKeep).join('/') + '/?p=/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep - 1).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    }());
+  </script>
+</head>
+<body>
+  <p>Redireccionando...</p>
+</body>
+</html>

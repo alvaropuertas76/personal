@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PLACEHOLDER_IMAGE, MAPS_CONFIG } from '../utils/constants';
+import MapSection from '../components/MapSection';
 
-function RaceDetail() {
-  const { id } = useParams();
+function RaceDetail() {  const { id } = useParams();
   const [race, setRace] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
-  const [mapLoaded, setMapLoaded] = useState(false);
-  const [map, setMap] = useState(null);
 
   // In a real app, this would fetch from an API
   useEffect(() => {
@@ -18,53 +16,10 @@ function RaceDetail() {
     setTimeout(() => {
       // Mock race data based on ID
       const raceData = mockRaceData.find(race => race.id === id) || null;
-      
-      setRace(raceData);
+        setRace(raceData);
       setLoading(false);
     }, 500);
   }, [id]);
-
-  // Initialize Google Map when race data is loaded
-  useEffect(() => {
-    if (race && race.coordinates && !map && window.google) {
-      const mapElement = document.getElementById('race-map');
-      if (mapElement) {
-        const newMap = new window.google.maps.Map(mapElement, {
-          center: race.coordinates,
-          zoom: 10,
-          mapTypeId: 'terrain'
-        });
-        
-        // Add marker for the race location
-        new window.google.maps.Marker({
-          position: race.coordinates,
-          map: newMap,
-          title: race.title
-        });
-
-        // If race has a route, display it
-        if (race.route && race.route.length > 1) {
-          const path = new window.google.maps.Polyline({
-            path: race.route,
-            geodesic: true,
-            strokeColor: '#FF0000',
-            strokeOpacity: 1.0,
-            strokeWeight: 3
-          });
-          
-          path.setMap(newMap);
-          
-          // Fit the map to the route bounds
-          const bounds = new window.google.maps.LatLngBounds();
-          race.route.forEach(point => bounds.extend(point));
-          newMap.fitBounds(bounds);
-        }
-        
-        setMap(newMap);
-        setMapLoaded(true);
-      }
-    }
-  }, [race, map]);
 
   if (loading) {
     return (
@@ -321,6 +276,32 @@ function RaceDetail() {
                             </a>
                           </li>
                         )}
+                        {race.stravaActivityStage1 && (
+                          <li>
+                            <a 
+                              href={race.stravaActivityStage1} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:underline flex items-center"
+                            >
+                              <i className="fab fa-strava mr-2"></i>
+                              Strava Activity Stage 1
+                            </a>
+                          </li>
+                        )}
+                        {race.stravaActivityStage2 && (
+                          <li>
+                            <a 
+                              href={race.stravaActivityStage2} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:underline flex items-center"
+                            >
+                              <i className="fab fa-strava mr-2"></i>
+                              Strava Activity Stage 2
+                            </a>
+                          </li>
+                        )}
                       </ul>
                     </div>
                   )}
@@ -332,10 +313,12 @@ function RaceDetail() {
           {/* Map Tab */}
           {activeTab === 'map' && (
             <div className="animate-fade-in">
-              <div className="bg-white rounded-lg shadow-md p-5 mb-6">
-                <h2 className="text-2xl font-bold mb-4">Race Route</h2>
-                {race.coordinates ? (
-                  <div id="race-map" className="h-96 w-full rounded-lg mb-4"></div>
+              <div className="bg-white rounded-lg shadow-md p-5 mb-6">                <h2 className="text-2xl font-bold mb-4">Race Route</h2>                {race.coordinates ? (
+                  <MapSection 
+                    coordinates={race.coordinates} 
+                    title={race.title}
+                    route={race.route}
+                  />
                 ) : (
                   <div className="bg-gray-100 h-96 w-full rounded-lg flex items-center justify-center">
                     <p className="text-gray-500">No map data available for this race</p>
@@ -530,19 +513,23 @@ const mockRaceData = [
     <p>Each participant carries a backpack containing all essential survival equipment, food, and personal items. The only assistance provided is limited water rations and tents to sleep in at night. The harsh desert conditions include temperatures that can exceed 50°C (122°F) during the day and drop dramatically at night.</p>
     <p>The course traverses a variety of desert terrain including sand dunes, rocky plains, mountains, and dried river beds. The longest single stage, known as the "long march," typically covers around 80-90km and must be completed in one continuous effort.</p>`,
     experience: 'This was my first self-supported stage race and easily the most challenging race I\'ve ever completed. The combination of extreme heat, sand dunes, and carrying all supplies created a unique physical and mental challenge. The camaraderie among participants was incredible, with everyone supporting each other through the toughest moments.',
-    challenges: 'The biggest challenges were managing water consumption in 45°C heat, dealing with severe blisters after stage 3, and the mental fatigue during the 86km long stage that took me over 20 hours to complete.',
-    coordinates: { lat: 31.1566, lng: -4.2569 },
-    image: '/assets/images/mds-main.jpg',
-    headerImage: '/assets/images/mds-header.jpg',
+    challenges: 'The biggest challenges were managing water consumption in 45°C heat, dealing with severe blisters after stage 3, and the mental fatigue during the 86km long stage that took me over 20 hours to complete.',    coordinates: { lat: 31.1566, lng: -4.2569 },
+    image: './assets/images/mds2022.jpg',
+    headerImage: './assets/images/mds-header.jpg',
     terrain: 'Desert, sand dunes, rocky plains',
     website: 'https://www.marathondessables.com/',
     stravaActivity: 'https://www.strava.com/activities/1234567890',
-    highlight: true,
+    stravaActivityStage1: 'https://www.strava.com/activities/1234567892',
+    stravaActivityStage2: 'https://www.strava.com/activities/1234567895',
+    stravaActivityStage3: 'https://www.strava.com/activities/1234567894',
+    stravaActivityStage4: 'https://www.strava.com/activities/1234567898',
+    stravaActivityStage5: 'https://www.strava.com/activities/1234567897',
+    stravaActivityStage6: 'https://www.strava.com/activities/1234567899',    highlight: true,
     photos: [
-      { url: '/assets/images/mds-1.jpg', caption: 'Starting line at dawn' },
-      { url: '/assets/images/mds-2.jpg', caption: 'Crossing the endless dunes' },
-      { url: '/assets/images/mds-3.jpg', caption: 'Reaching the finish line' },
-      { url: '/assets/images/mds-4.jpg', caption: 'The camp at night' }
+      { url: './assets/images/mds-1.jpg', caption: 'Starting line at dawn' },
+      { url: './assets/images/mds-2.jpg', caption: 'Crossing the endless dunes' },
+      { url: './assets/images/mds-3.jpg', caption: 'Reaching the finish line' },
+      { url: './assets/images/mds-4.jpg', caption: 'The camp at night' }
     ],
     splits: [
       { distance: 'Stage 1 (32km)', time: '4:12:35', pace: '7:54/km' },
@@ -558,7 +545,7 @@ const mockRaceData = [
       avgPace: '9:45',
       activityLink: 'https://connect.garmin.com/modern/activity/1234567890'
     },
-    nutrition: 'Freeze-dried meals averaging 2500 calories per day, supplemented with energy bars, nuts, and electrolyte tablets. I consumed approximately 8-10 liters of water daily.',
+    nutrition: 'Freeze-dried meals averaging 2000 calories per day, supplemented with energy bars, nuts, and electrolyte tablets. I consumed approximately 8-10 liters of water daily.',
     lessons: 'Proper foot care is essential - preventative taping saved my race. Pack calories, not weight. Mental resilience matters more than physical preparation in the later stages.'
   },
   {
@@ -573,7 +560,7 @@ const mockRaceData = [
     position: '1245/30000',
     description: 'The world\'s oldest annual marathon and one of the World Marathon Majors.',
     coordinates: { lat: 42.3472, lng: -71.0845 },
-    image: '/assets/images/boston-marathon.jpg',
+    image: './assets/images/boston-marathon.jpg',
     terrain: 'Road, rolling hills',
     website: 'https://www.baa.org/',
     highlight: true,
@@ -597,21 +584,21 @@ const mockRaceData = [
     position: '235/2300',
     description: 'The iconic mountain ultramarathon around Mont Blanc through France, Italy, and Switzerland.',
     coordinates: { lat: 45.9237, lng: 6.8694 },
-    image: '/assets/images/utmb.jpg',
+    image: './assets/images/utmb.jpg',
     terrain: 'Mountain trails, technical alpine terrain',
     highlight: true
   },
   {
-    id: 'ironman-frankfurt-2023',
+    id: 'ironman-frankfurt-2018',
     title: 'Ironman Frankfurt',
-    date: '2023-06-18',
+    date: '2018-06-18',
     location: 'Frankfurt, Germany',
     category: 'Triathlon',
     distance: 226,
     time: '12:15:33',
     description: 'Full distance triathlon including 3.8km swim, 180km bike, and 42.2km run.',
     coordinates: { lat: 50.1109, lng: 8.6821 },
-    image: '/assets/images/ironman-frankfurt.jpg',
+    image: './assets/images/ironman-frankfurt.jpeg',
     terrain: 'Swim, bike, run',
     position: '876/2500'
   },
@@ -626,7 +613,7 @@ const mockRaceData = [
     time: '39:12:44',
     description: '250km self-supported race through Iceland\'s volcanic terrain and glacial rivers.',
     coordinates: { lat: 64.9631, lng: -19.0208 },
-    image: '/assets/images/fire-ice.jpg',
+    image: './assets/images/fire-ice.jpg',
     terrain: 'Volcanic trails, rivers, glaciers',
     highlight: true
   }

@@ -15,7 +15,7 @@ function FutureProjects() {
       category: "marathon",
       description: "A scenic marathon through the beautiful Basque city, featuring the iconic Guggenheim Museum and riverside views.",
       status: "registered",
-      image: "/assets/images/bilbao.jpg"
+      image: "./assets/images/bilbao.jpg"
     },
     {
       id: "zaragoza-marathon-2024",
@@ -26,7 +26,7 @@ function FutureProjects() {
       category: "marathon",
       description: "Fast and flat course through historic Zaragoza, perfect for setting a personal record.",
       status: "planned",
-      image: "/assets/images/zaragoza.jpg"
+      image: "./assets/images/zaragoza.jpg"
     },
     {
       id: "javelina-jundred-2024",
@@ -37,7 +37,7 @@ function FutureProjects() {
       category: "ultra",
       description: "A premier desert ultra in the McDowell Mountain Regional Park. Famous for its festive Halloween atmosphere and relatively non-technical desert terrain.",
       status: "planned",
-      image: "/assets/images/javelina.jpg"
+      image: "./assets/images/javelina.jpg"
     },
     {
       id: "atacama-crossing-2025",
@@ -48,7 +48,7 @@ function FutureProjects() {
       category: "staged-ultra",
       description: "A 7-day, 6-stage, 250 km race across the driest desert on Earth. Self-supported race in extreme conditions.",
       status: "training",
-      image: "/assets/images/atacama.jpg"
+      image: "./assets/images/atacama.jpg"
     },
     {
       id: "warsaw-marathon-2025",
@@ -59,7 +59,7 @@ function FutureProjects() {
       category: "marathon",
       description: "One of Eastern Europe's best marathons through the historic streets of Poland's capital.",
       status: "planned",
-      image: "/assets/images/warsaw.jpg"
+      image: "./assets/images/warsaw.jpg"
     },
     {
       id: "desertica-2025",
@@ -70,7 +70,7 @@ function FutureProjects() {
       category: "ultra",
       description: "A challenging ultra trail race through the desert landscape of southern Spain.",
       status: "planned",
-      image: "/assets/images/desertica.jpg"
+      image: "./assets/images/desertica.jpg"
     }
   ];
   

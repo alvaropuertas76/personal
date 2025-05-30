@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Calendar from './pages/Calendar';
@@ -16,8 +16,7 @@ import StagedUltramarathons from './pages/categories/StagedUltramarathons';
 import Triathlons from './pages/categories/Triathlons';
 import FutureProjects from './pages/categories/FutureProjects';
 
-function App() {
-  return (
+function App() {  return (
     <Router basename="/personal">
       <Routes>
         <Route path="/" element={<Layout />}>

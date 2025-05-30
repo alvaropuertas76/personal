@@ -24,15 +24,15 @@ export const NAV_LINKS = [
 export const SOCIAL_LINKS = {
   linkedin: "https://www.linkedin.com/in/alvaropuertaspunal/",
   github: "https://github.com/alvaropuertas76",
-  strava: "https://www.strava.com/athletes/alvaro-puertas",
-  garmin: "https://connect.garmin.com/modern/profile/alvaro-puertas",
+  strava: "https://www.strava.com/athletes/35247033",
+  garmin: "https://connect.garmin.com/modern/profile/alvaropuertas",
   facebook: "https://www.facebook.com/alvaropuertas76",
   instagram: "https://www.instagram.com/alvaropuertas76"
 };
 
 // Google Maps configuration
 export const MAPS_CONFIG = {
-  apiKey: "YOUR_API_KEY", // Replace with actual API key when deploying
+  apiKey: "AIzaSyAsAUowinOWyylVW1BtnT-NWqS-l33LGxg", 
   defaultZoom: 7,
   defaultCenter: { lat: 40.4168, lng: -3.7038 } // Madrid, Spain
 };
@@ -63,28 +63,29 @@ export const RACE_CATEGORIES = [
   { id: "ultramarathons", name: "Ultramarathons", description: "Races beyond the marathon distance" },
   { id: "staged-ultramarathons", name: "Staged Ultramarathons", description: "Multi-day ultra adventures" },
   { id: "triathlons", name: "Triathlons", description: "Swim, bike, run events" },
-  { id: "future-projects", name: "Future Projects", description: "Upcoming challenges" }
+  { id: "future-projects", name: "Future Projects", description: "Upcoming challenges" },
+  { id: "supporter-space", name: "Supporter Space", description: "Supporter Space" }
 ];
 
 // Placeholder image for when no image is available
-export const PLACEHOLDER_IMAGE = "/assets/images/placeholder-race.jpg";
+export const PLACEHOLDER_IMAGE = "./assets/images/placeholder-race.jpg";
 
 // Hero carousel images for the homepage
 export const HERO_IMAGES = [
   {
-    url: "/assets/images/hero-1.jpg",
+    url: "./assets/images/mds2022.jpg",
     title: "Marathon des Sables",
     subtitle: "250km across the Sahara Desert",
     link: "/race/mds-2022"
   },
   {
-    url: "/assets/images/hero-2.jpg",
+    url: "./assets/images/fire-ice-ultra.jpg",
     title: "Fire & Ice Ultra",
     subtitle: "250km through Iceland's volcanic landscape",
     link: "/race/fire-ice-ultra-2018" 
   },
   {
-    url: "/assets/images/hero-3.jpg",
+    url: "./assets/images/frankfurt-ironman.jpeg",
     title: "Ironman Frankfurt",
     subtitle: "Full distance triathlon in Germany",
     link: "/race/ironman-frankfurt-2018"

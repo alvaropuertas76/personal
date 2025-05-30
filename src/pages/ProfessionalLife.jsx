@@ -26,7 +26,7 @@ function ProfessionalLife() {
               <h2 className="text-2xl font-bold mb-3">Álvaro Puertas</h2>
               <p className="text-lg text-blue-600 mb-4">Senior Software Architect</p>
               <p className="text-gray-700 mb-4">
-                With over 15 years of experience in software architecture and engineering, I specialize in 
+                With over 25 years of experience as IT software engineer, and 15 years as IT Architect, I specialize in 
                 designing scalable, resilient systems that support mission-critical business operations. 
                 My technical expertise spans cloud infrastructure, distributed systems, and 
                 enterprise application integration.
@@ -61,8 +61,8 @@ function ProfessionalLife() {
           <div className="bg-white rounded-lg shadow-soft overflow-hidden">
             <div className="border-l-4 border-blue-600 pl-6 py-6 pr-6 mb-1">
               <div className="flex flex-col md:flex-row justify-between mb-2">
-                <h3 className="text-xl font-bold">Senior Software Architect</h3>
-                <p className="text-gray-600">2018 - Present</p>
+                <h3 className="text-xl font-bold">KnowmadMood - Solution Architect</h3>
+                <p className="text-gray-600">2023 - Present</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Leading architecture initiatives for global enterprise applications, focusing on scalability, 
@@ -79,8 +79,8 @@ function ProfessionalLife() {
             
             <div className="border-l-4 border-green-500 pl-6 py-6 pr-6 mb-1">
               <div className="flex flex-col md:flex-row justify-between mb-2">
-                <h3 className="text-xl font-bold">Lead Software Engineer</h3>
-                <p className="text-gray-600">2014 - 2018</p>
+                <h3 className="text-xl font-bold">SmallWorld Financial Services - Solution Architect</h3>
+                <p className="text-gray-600">2021 - 2023</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Directed engineering teams in delivering high-performance, scalable applications. 
@@ -96,12 +96,12 @@ function ProfessionalLife() {
             
             <div className="border-l-4 border-purple-500 pl-6 py-6 pr-6">
               <div className="flex flex-col md:flex-row justify-between mb-2">
-                <h3 className="text-xl font-bold">Senior Software Developer</h3>
-                <p className="text-gray-600">2009 - 2014</p>
+                <h3 className="text-xl font-bold">Banca March - Functional Analyst</h3>
+                <p className="text-gray-600">2020 - 2021</p>
               </div>
               <p className="text-gray-700 mb-4">
-                Developed enterprise-grade applications with focus on performance and security. 
-                Collaborated with cross-functional teams to deliver solutions aligned with business objectives.
+                Esto si que fue una puta mierda de experiencia profesional. Muy poco recomendable entrar en esta empresa, eso del
+                Great place to work se lo tendrían que mirar por la cantidad de hijos de puta que hay en ese edificio.
               </p>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">.NET</span>

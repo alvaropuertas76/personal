@@ -74,7 +74,7 @@ function Layout() {
               </p>
               <p className="text-gray-300">
                 <i className="fas fa-envelope mr-2"></i>
-                contact@alvaropuertas.com
+                alvaropuertas76@gmail.com
               </p>
             </div>
           </div>

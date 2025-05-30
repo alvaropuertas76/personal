@@ -30,11 +30,14 @@ function Navigation() {
 
   return (
     <nav className={`py-4 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
-      <div className="flex items-center justify-between">
-        {/* Logo */}
+      <div className="flex items-center justify-between">        {/* Logo */}
         <div className="flex items-center space-x-4">
-          <Link to="/" className="flex items-center">
-            <span className="text-xl font-bold text-blue-600">ÁP</span>
+          <Link to="//" className="flex items-center">
+            <img 
+              src="./assets/images/firma.png" 
+              alt="Álvaro Puertas" 
+              className="w-10 h-10 rounded-full object-cover border-2 border-blue-600"
+            />
             <span className="ml-2 text-lg font-semibold hidden sm:block">Álvaro Puertas</span>
           </Link>
         </div>

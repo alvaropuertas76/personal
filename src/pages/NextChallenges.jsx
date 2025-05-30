@@ -47,7 +47,7 @@ function NextChallenges() {
       distance: "42.2 km",
       description: "One of Eastern Europe's best marathons through the historic streets of Poland's capital.",
       status: "planned",
-      image: "/assets/images/warsaw.jpg"
+      image: "./assets/images/warsaw.jpg"
     },
     {
       id: "desertica-2025",
