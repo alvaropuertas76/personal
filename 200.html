@@ -5,36 +5,46 @@
   <meta charset="UTF-8" />  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Personal website of a Software Architect and Athlete" />
   <title>Álvaro Puertas - Software Architect & Athlete</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <!-- Script para cargar Google Maps API con mejor manejo de errores -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">  <!-- Script para cargar Google Maps API de manera directa -->
   <script>
-    // Función para cargar Google Maps API de manera más controlada
-    function loadGoogleMapsApi() {
-      const script = document.createElement('script');
-      script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAsAUowinOWyylVW1BtnT-NWqS-l33LGxg&callback=initMapsCallback";
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-        // Definir callback global para la API de Google Maps
-      window.initMapsCallback = function() {
-        window.googleMapsLoaded = true;
-        console.log('[HTML] Google Maps API cargada correctamente');
-        // Disparar un evento que pueda ser escuchado por los componentes de React
-        window.dispatchEvent(new Event('googleMapsLoaded'));
-        console.log('[HTML] Evento googleMapsLoaded disparado');
-      };
-      
-      // Manejar errores de carga
-      script.onerror = function() {
-        console.error('Error al cargar Google Maps API');
-        window.googleMapsError = true;
-        window.dispatchEvent(new Event('googleMapsError'));
-      };
+    window.googleMapsInitialized = false;
+    
+    function gmapsLoaded() {
+      console.log('Google Maps API cargada correctamente (callback global)');
+      window.googleMapsInitialized = true;
+      window.dispatchEvent(new Event('googleMapsLoaded'));
     }
     
-    // Cargar Google Maps API cuando la página esté lista
-    window.addEventListener('load', loadGoogleMapsApi);
+    function gmapsError() {
+      console.error('Error al cargar Google Maps API');
+      window.dispatchEvent(new Event('googleMapsError'));
+      
+      // Mostrar mensaje visible en la consola
+      console.error('%c⚠️ ERROR DE GOOGLE MAPS', 'background: #f44336; color: white; font-size: 16px; padding: 4px 8px;');
+      console.error('%cRevisa que la API key sea válida y que no haya bloqueadores activados', 'font-size: 14px');
+    }
+    
+    // Cargar Google Maps con manejo de errores
+    function loadGoogleMaps() {
+      const script = document.createElement('script');
+      script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAsAUowinOWyylVW1BtnT-NWqS-l33LGxg&callback=gmapsLoaded";
+      script.async = true;
+      script.defer = true;
+      script.onerror = gmapsError;
+      document.head.appendChild(script);
+      
+      // Si después de 5 segundos no se ha cargado, probablemente hay un problema
+      setTimeout(() => {
+        if (!window.googleMapsInitialized) {
+          gmapsError();
+        }
+      }, 5000);
+    }
+    
+    // Cargar cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', loadGoogleMaps);
   </script>
+  
   <!-- Script para manejar redirecciones de URL en GitHub Pages con BrowserRouter -->
   <script type="text/javascript">
     // Este script comprueba si estamos siendo redirigidos desde 404.html
@@ -49,8 +59,8 @@
       }
     }(window.location))
   </script>
-  <script type="module" crossorigin src="/personal/assets/main-BCFqn4VY.js"></script>
-  <link rel="stylesheet" crossorigin href="/personal/assets/main-gjNJFgDP.css">
+  <script type="module" crossorigin src="/personal/assets/main-Brfj6v-U.js"></script>
+  <link rel="stylesheet" crossorigin href="/personal/assets/main-Cj5H9PB8.css">
 </head>
 
 <body>  <div id="root"></div>
