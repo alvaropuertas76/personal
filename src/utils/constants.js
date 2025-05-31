@@ -4,20 +4,22 @@
 
 // Navigation links structure for the main menu
 export const NAV_LINKS = [
-  { name: "Home", path: "/" },
-  { name: "Calendar", path: "/calendar" },
+  { name: "Home", path: "/", key: "home" },
+  { name: "Calendar", path: "/calendar", key: "calendar" },
   {
     name: "Races",
+    key: "races",
     children: [
-      { name: "Marathons", path: "/marathons" },
-      { name: "Ultramarathons", path: "/ultramarathons" },
-      { name: "Staged Ultramarathons", path: "/staged-ultramarathons" },
-      { name: "Triathlons", path: "/triathlons" }
+      { name: "Marathons", path: "/marathons", key: "marathons" },
+      { name: "Ultramarathons", path: "/ultramarathons", key: "ultramarathons" },
+      { name: "Staged Ultramarathons", path: "/staged-ultramarathons", key: "stagedUltramarathons" },
+      { name: "Triathlons", path: "/triathlons", key: "triathlons" }
     ]
   },
-  { name: "Next Challenges", path: "/next-challenges" },
-  { name: "Professional Life", path: "/professional" },
-  { name: "Race Template", path: "/template" }
+  { name: "Next Challenges", path: "/next-challenges", key: "nextChallenges" },
+  { name: "Professional Life", path: "/professional", key: "professionalLife" },
+  { name: "Race Template", path: "/template", key: "raceTemplate" },
+  { name: "Supporter Zone", path: "/supporter-zone", key: "supporterZone" }
 ];
 
 // Social media and external profile links
@@ -41,19 +43,23 @@ export const MAPS_CONFIG = {
 export const CALENDAR_CATEGORIES = {
   race: {
     name: "Race",
-    color: "blue-600"
+    color: "blue-600",
+    key: "race"
   },
   training: {
     name: "Training",
-    color: "green-500"
+    color: "green-500",
+    key: "training"
   },
   rest: {
     name: "Rest Day",
-    color: "yellow-400"
+    color: "yellow-400",
+    key: "rest"
   },
   travel: {
     name: "Travel",
-    color: "purple-500"
+    color: "purple-500",
+    key: "travel"
   }
 };
 

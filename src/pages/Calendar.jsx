@@ -1,108 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CALENDAR_CATEGORIES } from '../utils/constants';
+import { useLanguage } from '../translations/LanguageContext.jsx';
 
 function Calendar() {
   // State for the selected year (default to current year)
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  // Estados para el modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDateEvents, setSelectedDateEvents] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
   
-  // Sample events data - in a real application, this would come from an API or database
-  const [events] = useState([
-    {
-      id: 1,
-      title: "Marathon des Sables",
-      date: new Date(2022, 3, 25), // April 25, 2022
-      category: "race",
-      description: "250km self-supported race across the Sahara Desert, Morocco",
-      link: "/race/mds-2022"
-    },
-    {
-      id: 2,
-      title: "Long Training Run",
-      date: new Date(2023, 0, 15), // January 15, 2023
-      category: "training",
-      description: "30km trail training run with elevation",
-      link: null
-    },
-    {
-      id: 3,
-      title: "Ironman Frankfurt",
-      date: new Date(2023, 5, 18), // June 18, 2023
-      category: "race",
-      description: "Full distance triathlon in Germany",
-      link: "/race/ironman-frankfurt-2023"
-    },
-    {
-      id: 4,
-      title: "Rest Week",
-      date: new Date(2023, 6, 10), // July 10, 2023
-      category: "rest",
-      description: "Active recovery week after Ironman",
-      link: null
-    },
-    {
-      id: 5,
-      title: "Ultra Trail Mont Blanc",
-      date: new Date(2023, 7, 28), // August 28, 2023
-      category: "race",
-      description: "100 mile trail race in the Alps",
-      link: "/race/utmb-2023"
-    },
-    {
-      id: 6,
-      title: "Training Block",
-      date: new Date(2023, 10, 15), // November 15, 2023
-      category: "training",
-      description: "Intensive 3-week training block for upcoming races",
-      link: null
-    },
-    {
-      id: 7,
-      title: "Boston Marathon",
-      date: new Date(2024, 3, 15), // April 15, 2024
-      category: "race",
-      description: "Road marathon in Boston, MA",
-      link: "/race/boston-2024"
-    },    {
-      id: 8,
-      title: "Sahara Desert Expedition",
-      date: new Date(2024, 9, 5), // October 5, 2024
-      category: "travel",
-      description: "Travel to Morocco for race preparations",
-      link: null
-    },
-    {
-      id: 9,
-      title: "Maratón de Invierno",
-      date: new Date(2025, 0, 15), // January 15, 2025
-      category: "race",
-      description: "Carrera de invierno en condiciones extremas",
-      link: "/race/winter-marathon-2025"
-    },
-    {
-      id: 10,
-      title: "Warsaw Marathon",
-      date: new Date(2025, 8, 28), // January 15, 2025
-      category: "race",
-      description: "Marathon in Warsaw, Poland",
-      link: "/race/warsaw-marathon-2025"
-    },
-    {
-      id: 11,
-      title: "La Desertica",
-      date: new Date(2025, 9, 18), // October 28, 2025
-      category: "race",
-      description: "Ultramarathon in the Spanish desert of Almeria",
-      link: "/race/la-desertica-2025"
-    }
-
-  ]);
-
+  // Obtener las traducciones
+  const { t, language } = useLanguage();
+  
+  // Cargar eventos desde los archivos JSON
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        setLoading(true);
+          // Cargar datos de los cuatro archivos
+        const fetchFileData = async (fileName) => {
+          try {
+            const response = await fetch(`/personal/data/${fileName}-events.json`);
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status} for ${fileName}`);
+            }
+            return await response.json();
+          } catch (error) {
+            console.error(`Error loading ${fileName} events:`, error);
+            throw error; // Re-throw to be caught by the main try-catch
+          }
+        };
+        
+        // Obtener datos de cada categoría en paralelo
+        const [raceData, trainingData, restData, travelData] = await Promise.all([
+          fetchFileData('race'),
+          fetchFileData('training'),
+          fetchFileData('rest'),
+          fetchFileData('travel')
+        ]);
+          // Combinar todos los datos
+        const allData = [...raceData, ...trainingData, ...restData, ...travelData];
+        
+        // Convertir las fechas de string a objetos Date
+        const eventsWithDates = allData.map(event => {
+          // Asegurarnos de que la fecha se interpreta correctamente
+          // Convertir YYYY-MM-DD a un array [año, mes, día]
+          const [year, month, day] = event.date.split('-').map(Number);
+          
+          // Crear una nueva fecha usando el constructor Date con año, mes (0-indexado), día
+          // Importante: en JavaScript, los meses son 0-indexados (0 = enero, 11 = diciembre)
+          const dateObj = new Date(year, month - 1, day);
+          
+          console.log(`Fecha original: ${event.date}, Fecha convertida: ${dateObj.toISOString()}`);
+          
+          return {
+            ...event,
+            date: dateObj
+          };
+        });
+          setEvents(eventsWithDates);
+      } catch (error) {
+        console.error("Error cargando eventos:", error);
+        setError("No se pudieron cargar los eventos. Por favor, inténtalo de nuevo más tarde.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchEvents();  }, []);
   // Generate array of months
-  const months = [
-    "January", "February", "March", "April", 
-    "May", "June", "July", "August", 
-    "September", "October", "November", "December"
+  const months = t?.calendar?.months || [
+    "Enero", "Febrero", "Marzo", "Abril", 
+    "Mayo", "Junio", "Julio", "Agosto", 
+    "Septiembre", "Octubre", "Noviembre", "Diciembre"
   ];
   
   // Function to get days in month
@@ -137,15 +112,34 @@ function Calendar() {
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 11 }, (_, i) => currentYear - 5 + i);
   
-  return (
-    <div className="bg-gray-50 min-h-screen">
-      <div className="container mx-auto py-12 px-4">
-        <h1 className="text-3xl font-bold text-center mb-8">Race & Training Calendar</h1>
-        
-        {/* Filters */}
-        <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-8">
+  // Función para manejar el clic en un día del calendario
+  const handleDayClick = (date, events) => {
+    if (events.length > 0) {
+      setSelectedDate(date);
+      setSelectedDateEvents(events);
+      setIsModalOpen(true);
+    }
+  };
+    return (
+    <div className="bg-gray-50 min-h-screen">      <div className="container mx-auto py-12 px-4">
+        <h1 className="text-3xl font-bold text-center mb-8">{t?.calendar?.title || "Calendario de Carreras y Entrenamientos"}</h1>
+          {loading ? (
+          <div className="text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+            <p>{t?.calendar?.loading || "Cargando eventos..."}</p>
+          </div>
+        ) : error ? (
+          <div className="text-center py-12">
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+              <strong className="font-bold">Error: </strong>
+              <span className="block sm:inline">{t?.calendar?.error || error}</span>
+            </div>
+          </div>
+        ) : (
+          <>            {/* Filters */}
+            <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-8">
           <div className="flex items-center">
-            <label htmlFor="year-select" className="mr-2 font-medium">Year:</label>
+            <label htmlFor="year-select" className="mr-2 font-medium">{t?.calendar?.year || "Año:"}</label>
             <select 
               id="year-select"
               value={selectedYear}
@@ -158,39 +152,36 @@ function Calendar() {
             </select>
           </div>
           
-          <div className="flex items-center">
-            <label htmlFor="category-select" className="mr-2 font-medium">Category:</label>
+          <div className="flex items-center">            <label htmlFor="category-select" className="mr-2 font-medium">{t?.calendar?.category || "Categoría:"}</label>
             <select 
               id="category-select"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="all">All Events</option>
+              <option value="all">{t?.calendar?.allEvents || "Todos los eventos"}</option>
               {Object.entries(CALENDAR_CATEGORIES).map(([key, category]) => (
                 <option key={key} value={key}>{category.name}</option>
               ))}
             </select>
           </div>
-        </div>
-        
-        {/* Category Legend */}
+        </div>        {/* Category Legend */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           <div className="flex items-center">
             <span className="inline-block w-4 h-4 rounded-full bg-blue-600 mr-2"></span>
-            <span>Race</span>
+            <span>{t?.calendar?.categories?.race || "Carrera"}</span>
           </div>
           <div className="flex items-center">
             <span className="inline-block w-4 h-4 rounded-full bg-green-500 mr-2"></span>
-            <span>Training</span>
+            <span>{t?.calendar?.categories?.training || "Entrenamiento"}</span>
           </div>
           <div className="flex items-center">
             <span className="inline-block w-4 h-4 rounded-full bg-yellow-400 mr-2"></span>
-            <span>Rest Day</span>
+            <span>{t?.calendar?.categories?.rest || "Descanso"}</span>
           </div>
           <div className="flex items-center">
             <span className="inline-block w-4 h-4 rounded-full bg-purple-500 mr-2"></span>
-            <span>Travel</span>
+            <span>{t?.calendar?.categories?.travel || "Viaje"}</span>
           </div>
         </div>
         
@@ -209,9 +200,8 @@ function Calendar() {
             return (
               <div key={month} className="bg-white rounded-lg shadow-soft p-4">
                 <h2 className="text-lg font-bold mb-4 text-center">{month} {selectedYear}</h2>
-                  {/* Days of week header */}
-                <div className="grid grid-cols-7 gap-1 text-center text-sm font-medium mb-2">
-                  {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(day => (
+                  {/* Days of week header */}                <div className="grid grid-cols-7 gap-1 text-center text-sm font-medium mb-2">
+                  {(t?.calendar?.weekDays || ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]).map(day => (
                     <div key={day} className="py-1">{day}</div>
                   ))}
                 </div>
@@ -228,22 +218,27 @@ function Calendar() {
                     const hasEvent = eventsForDay.length > 0;
                     const eventCategory = hasEvent ? eventsForDay[0].category : null;
                     
-                    return (
-                      <div 
+                    return (                      <div 
                         key={`${monthIndex}-${day}`}
                         className={`relative h-10 md:h-12 flex items-center justify-center border border-gray-100 rounded-sm ${
-                          hasEvent ? `calendar-day ${eventCategory}` : ''
+                          hasEvent 
+                            ? `calendar-day ${eventCategory} cursor-pointer hover:shadow-md transition-all` 
+                            : ''
                         }`}
+                        onClick={() => handleDayClick(date, eventsForDay)}
+                        title={hasEvent ? `${eventsForDay.length} event(s): ${eventsForDay.map(e => e.title).join(', ')}` : ''}
                       >
                         <span className="text-sm">{day}</span>
-                        
-                        {/* Event indicator */}
+                          {/* Event indicator */}
                         {hasEvent && (
-                          <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
+                          <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex gap-1">
                             <span 
                               className={`inline-block w-2 h-2 rounded-full bg-${CALENDAR_CATEGORIES[eventCategory].color}`}
                               title={eventsForDay.map(e => e.title).join(', ')}
                             ></span>
+                            {eventsForDay.length > 1 && (
+                              <span className="text-xs text-gray-500">+{eventsForDay.length - 1}</span>
+                            )}
                           </div>
                         )}
                       </div>
@@ -255,52 +250,80 @@ function Calendar() {
           })}
         </div>
         
-        {/* Event List */}
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6 text-center">Events in {selectedYear}</h2>
-          
-          {filteredEvents.length === 0 ? (
-            <p className="text-center text-gray-500">No events found for the selected criteria.</p>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {filteredEvents.map(event => (
-                <div 
-                  key={event.id} 
-                  className={`border-l-4 border-${CALENDAR_CATEGORIES[event.category].color} bg-white rounded-lg shadow-soft p-4 hover:shadow-md transition`}
+        {/* Event Modal */}
+        {isModalOpen && (
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="absolute inset-0 bg-black opacity-50" onClick={() => setIsModalOpen(false)}></div>
+            
+            <div className="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 z-10 overflow-y-auto max-h-[90vh]">              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-bold">{t?.calendar?.eventsOn || "Eventos del"} {selectedDate.toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}</h3>
+                <button 
+                  onClick={() => setIsModalOpen(false)} 
+                  className="text-gray-500 hover:text-gray-700"
+                  aria-label="Cerrar"
                 >
-                  <div className="flex justify-between items-start">
-                    <h3 className="font-bold text-lg">{event.title}</h3>
-                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold bg-${CALENDAR_CATEGORIES[event.category].color} bg-opacity-20 text-${CALENDAR_CATEGORIES[event.category].color}`}>
-                      {CALENDAR_CATEGORIES[event.category].name}
-                    </span>
-                  </div>
-                  <p className="text-gray-500 text-sm mt-1">
-                    {event.date.toLocaleDateString('en-US', { 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}
-                  </p>
-                  <p className="mt-2 text-gray-700">{event.description}</p>
-                  
-                  {event.link && (
-                    <div className="mt-3">
-                      <a 
-                        href={event.link} 
-                        className="inline-flex items-center text-blue-600 hover:text-blue-800"
-                      >
-                        View Details
-                        <svg className="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                      </a>
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              
+              {selectedDateEvents.length === 0 ? (
+                <p className="text-center text-gray-500">{t?.calendar?.noEvents || "No hay eventos para esta fecha."}</p>
+              ) : (
+                <div className="space-y-4">
+                  {selectedDateEvents.map(event => (
+                    <div key={event.id} className={`border-l-4 border-${CALENDAR_CATEGORIES[event.category].color} pl-4 p-3 bg-gray-50 rounded-r`}>
+                      <div className="flex justify-between items-start">
+                        <h4 className="font-semibold text-lg">{event.title}</h4>
+                        <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold bg-${CALENDAR_CATEGORIES[event.category].color} bg-opacity-20 text-${CALENDAR_CATEGORIES[event.category].color}`}>
+                          {CALENDAR_CATEGORIES[event.category].name}
+                        </span>
+                      </div>                      <p className="text-gray-500 text-sm mt-1">
+                        {event.date.toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', { 
+                          year: 'numeric', 
+                          month: 'long', 
+                          day: 'numeric' 
+                        })}
+                      </p>
+                      <p className="mt-2 text-gray-700">{event.description}</p>
+                      
+                      {event.link && (
+                        <div className="mt-3">
+                          <a 
+                            href={event.link} 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-blue-600 hover:text-blue-800 hover:underline" 
+                          >
+                            {t?.calendar?.viewDetails || "Ver detalles"}
+                            <svg className="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                          </a>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  ))}
                 </div>
-              ))}
+              )}
+                <div className="mt-6 flex justify-end">
+                <button 
+                  onClick={() => setIsModalOpen(false)} 
+                  className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition font-medium"
+                >
+                  {t?.calendar?.close || "Cerrar"}
+                </button>
+              </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
+          </>
+        )}
       </div>
     </div>
   );

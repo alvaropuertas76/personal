@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { NAV_LINKS } from '../utils/constants';
+import LanguageSelector from './LanguageSelector';
+import { useLanguage } from '../translations/LanguageContext.jsx';
 
 function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage(); // Obtener las traducciones
 
   // Handle scroll event for sticky header styling
   useEffect(() => {
@@ -39,15 +42,13 @@ function Navigation() {
             />
             <span className="ml-2 text-lg font-semibold hidden sm:block">Álvaro Puertas Puñal</span>
           </Link>
-        </div>
-
-        {/* Desktop Navigation */}
+        </div>        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           {NAV_LINKS.map((link, index) => (
             link.children ? (
               <div key={index} className="dropdown relative group">
                 <button className="flex items-center text-gray-700 hover:text-blue-600 transition">
-                  {link.name}
+                  {t.navigation[link.key] || link.name}
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
@@ -68,18 +69,21 @@ function Navigation() {
                   </div>
                 </div>
               </div>
-            ) : (
-              <NavLink
+            ) : (              <NavLink
                 key={index}
                 to={link.path}
                 className={({ isActive }) => 
                   `text-gray-700 hover:text-blue-600 transition ${isActive ? 'nav-link-active' : ''}`
                 }
               >
-                {link.name}
+                {t?.navigation?.[link.key] || link.name}
               </NavLink>
-            )
-          ))}
+            )          ))}
+          
+          {/* Language Selector */}
+          <div className="ml-4 flex items-center">
+            <LanguageSelector />
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -106,9 +110,8 @@ function Navigation() {
         <div className="md:hidden mt-4 bg-white border-t pt-4 animate-fade-in">
           <div className="flex flex-col space-y-3">
             {NAV_LINKS.map((link, index) => (
-              link.children ? (
-                <div key={index} className="space-y-2">
-                  <div className="font-medium text-gray-800">{link.name}</div>
+              link.children ? (              <div key={index} className="space-y-2">
+                  <div className="font-medium text-gray-800">{t?.navigation?.[link.key] || link.name}</div>
                   <div className="pl-4 border-l-2 border-gray-200 space-y-2">
                     {link.children.map((child, childIndex) => (
                       <NavLink
@@ -118,23 +121,31 @@ function Navigation() {
                           `block text-sm ${isActive ? 'text-blue-600 font-medium' : 'text-gray-600'}`
                         }
                       >
-                        {child.name}
+                        {t?.categories?.[child.key] || child.name}
                       </NavLink>
                     ))}
                   </div>
                 </div>
-              ) : (
-                <NavLink
+              ) : (                <NavLink
                   key={index}
                   to={link.path}
                   className={({ isActive }) => 
                     `block ${isActive ? 'text-blue-600 font-medium' : 'text-gray-700'}`
                   }
                 >
-                  {link.name}
+                  {t?.navigation?.[link.key] || link.name}
                 </NavLink>
               )
             ))}
+              {/* Language Selector Mobile */}
+            <div className="pt-3 mt-3 border-t border-gray-200">
+              <div className="flex items-center font-medium text-gray-800 mb-2">
+                {t?.common?.languageSelector || "Idioma"}
+              </div>
+              <div className="pl-1">
+                <LanguageSelector />
+              </div>
+            </div>
           </div>
         </div>
       )}
