@@ -1,0 +1,39 @@
+{
+  "supportEntries": [
+    {
+      "id": "mds2022",
+      "raceTitle": "Marathon des Sables 2022",
+      "supportText": "Durante el Marathon des Sables 2022, recibí un apoyo increíble de mi familia y amigos. Sus mensajes diarios me llegaban a través del sistema de correo del campamento y me daban la fuerza necesaria para enfrentar el calor del desierto. Especialmente en la etapa larga de 86km, cuando pensé en abandonar, recordé todos esos mensajes de ánimo y pude continuar hasta la meta.",
+      "supporterName": "Familia y amigos"
+    },
+    {
+      "id": "fire-ice-ultra-2018",
+      "raceTitle": "Fire & Ice Ultra 2018",
+      "supportText": "En el Fire & Ice Ultra de Islandia, mi equipo de entrenamiento me preparó durante meses, diseñando un plan específico para las condiciones extremas que enfrentaría. Durante la carrera, aunque estaba solo en el terreno, sentía como si todos ellos corrieran a mi lado. Sus consejos sobre cómo manejar el frío extremo y el terreno volcánico fueron fundamentales para completar los 250km.",
+      "supporterName": "Equipo de entrenamiento"
+    },
+    {
+      "id": "ironman-frankfurt-2018",
+      "raceTitle": "Ironman Frankfurt 2018",
+      "supportText": "Mi primer Ironman fue un desafío enorme, y sin el apoyo de mi club de triatlón no habría sido posible. Desde las largas sesiones de natación en aguas abiertas hasta los entrenamientos de bicicleta de 5 horas los domingos, siempre tuve compañeros a mi lado. El día de la carrera, verlos en varios puntos del recorrido gritando mi nombre me dio la energía extra que necesitaba para llegar a la meta después de más de 11 horas de esfuerzo.",
+      "supporterName": "Club de triatlón Madrid"
+    }
+  ],
+  "carouselImages": [
+    {
+      "url": "./assets/images/mds2022.jpg",
+      "title": "Apoyo en el desierto",
+      "subtitle": "Mensajes que atraviesan el Sahara"
+    },
+    {
+      "url": "./assets/images/fire-ice-ultra.jpg",
+      "title": "Fuerza en la distancia",
+      "subtitle": "250km con apoyo virtual constante"
+    },
+    {
+      "url": "./assets/images/frankfurt-ironman.jpeg",
+      "title": "Espíritu de equipo",
+      "subtitle": "Un triatlón nunca se hace solo"
+    }
+  ]
+}
