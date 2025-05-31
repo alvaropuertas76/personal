@@ -94,9 +94,9 @@ export const HERO_IMAGES = [
 
 // Website metadata
 export const SITE_METADATA = {
-  title: "Álvaro Puertas | Software Architect & Endurance Athlete",
-  description: "Personal website of Álvaro Puertas, Software Architect and endurance athlete specialized in ultramarathons and extreme races.",
-  author: "Álvaro Puertas",
+  title: "Álvaro Puertas Puñal | Software Architect & Endurance Athlete",
+  description: "Personal website of Álvaro Puertas Puñal, Software Architect and endurance athlete specialized in ultramarathons and extreme races.",
+  author: "Álvaro Puertas Puñal",
   keywords: "software architect, ultramarathon, marathon, endurance athlete, trail running, triathlon"
 };
 

@@ -7,13 +7,17 @@ function Home() {
   return (
     <div>
       {/* Hero Carousel */}
-      <CarouselHero />
-      
-      {/* Introduction */}
+      <CarouselHero />      {/* Introduction */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-6">Álvaro Puertas</h1>
+            <div className="flex justify-center mb-6">
+              <img 
+                src="./assets/images/firma.png" 
+                alt="Firma de Álvaro Puertas Puñal" 
+                className="w-64 h-auto"
+              />
+            </div>
             <div className="flex items-center justify-center mb-6">
               <span className="h-px bg-blue-600 w-12 mx-4"></span>
               <span className="text-xl text-blue-600">Software Architect & Endurance Athlete</span>

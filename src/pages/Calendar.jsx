@@ -63,15 +63,39 @@ function Calendar() {
       category: "race",
       description: "Road marathon in Boston, MA",
       link: "/race/boston-2024"
-    },
-    {
+    },    {
       id: 8,
       title: "Sahara Desert Expedition",
       date: new Date(2024, 9, 5), // October 5, 2024
       category: "travel",
       description: "Travel to Morocco for race preparations",
       link: null
+    },
+    {
+      id: 9,
+      title: "Maratón de Invierno",
+      date: new Date(2025, 0, 15), // January 15, 2025
+      category: "race",
+      description: "Carrera de invierno en condiciones extremas",
+      link: "/race/winter-marathon-2025"
+    },
+    {
+      id: 10,
+      title: "Warsaw Marathon",
+      date: new Date(2025, 8, 28), // January 15, 2025
+      category: "race",
+      description: "Marathon in Warsaw, Poland",
+      link: "/race/warsaw-marathon-2025"
+    },
+    {
+      id: 11,
+      title: "La Desertica",
+      date: new Date(2025, 9, 18), // October 28, 2025
+      category: "race",
+      description: "Ultramarathon in the Spanish desert of Almeria",
+      link: "/race/la-desertica-2025"
     }
+
   ]);
 
   // Generate array of months
@@ -85,10 +109,11 @@ function Calendar() {
   const getDaysInMonth = (year, month) => {
     return new Date(year, month + 1, 0).getDate();
   };
-  
-  // Function to get the day of week the month starts on (0 = Sunday, 6 = Saturday)
+    // Function to get the day of week the month starts on (0 = Monday, 6 = Sunday)
   const getFirstDayOfMonth = (year, month) => {
-    return new Date(year, month, 1).getDay();
+    const day = new Date(year, month, 1).getDay();
+    // Convert from Sunday-based (0-6) to Monday-based (0-6)
+    return day === 0 ? 6 : day - 1;
   };
   
   // Filter events by year and category
@@ -171,10 +196,9 @@ function Calendar() {
         
         {/* Calendar Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {months.map((month, monthIndex) => {
-            // Get number of days in this month
+          {months.map((month, monthIndex) => {            // Get number of days in this month
             const daysInMonth = getDaysInMonth(selectedYear, monthIndex);
-            // Get first day of the month (0 = Sunday, 6 = Saturday)
+            // Get first day of the month (0 = Monday, 6 = Sunday)
             const firstDayOfMonth = getFirstDayOfMonth(selectedYear, monthIndex);
             // Create days array including empty spots for formatting
             const days = Array.from({ length: firstDayOfMonth + daysInMonth }, (_, i) => {
@@ -185,10 +209,9 @@ function Calendar() {
             return (
               <div key={month} className="bg-white rounded-lg shadow-soft p-4">
                 <h2 className="text-lg font-bold mb-4 text-center">{month} {selectedYear}</h2>
-                
-                {/* Days of week header */}
+                  {/* Days of week header */}
                 <div className="grid grid-cols-7 gap-1 text-center text-sm font-medium mb-2">
-                  {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(day => (
+                  {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(day => (
                     <div key={day} className="py-1">{day}</div>
                   ))}
                 </div>
