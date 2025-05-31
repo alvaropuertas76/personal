@@ -1,163 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SOCIAL_LINKS } from '../utils/constants';
+import { useLanguage } from '../translations/LanguageContext.jsx';
 
 function ProfessionalLife() {
   const [selectedExperience, setSelectedExperience] = useState(null);
+  const [projectsData, setProjectsData] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { t, language } = useLanguage(); // Obtener las traducciones y el idioma actual
   
-  // Datos de proyectos para cada experiencia laboral
-  const projectsData = {
-    knowmad: [
-      {
-        title: "Transformación Digital Banca",
-        description: "Lideré la arquitectura de soluciones cloud-native para modernizar aplicaciones bancarias críticas, mejorando el tiempo de respuesta en un 40% y la escalabilidad en momentos de alta demanda.",
-        technologies: ["AWS Lambda", "DynamoDB", "React", "Node.js"]
-      },
-      {
-        title: "Plataforma IoT Industrial",
-        description: "Diseñé una arquitectura de microservicios para procesamiento de datos IoT en tiempo real, permitiendo monitorizar más de 10,000 sensores industriales con latencia inferior a 100ms.",
-        technologies: ["Kubernetes", "Kafka", "TimescaleDB", "Python"]
-      },
-      {
-        title: "Sistema de Seguimiento Logístico",
-        description: "Arquitectura para sistema de gestión logística en tiempo real con capacidad para procesar millones de eventos diarios de ubicación y estado de envíos internacionales.",
-        technologies: ["Event Sourcing", "CQRS", "Redis", "Spring Boot"]
+  // Cargar datos desde el archivo JSON
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/personal/data/professional-projects.json');
+        
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        setProjectsData(data.projectsData);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching projects data:', err);
+        setError(t?.professionalLife?.error || 'Failed to load projects data. Please try again later.');
+        setLoading(false);
       }
-    ],
-    smallworld: [
-      {
-        title: "Plataforma de Servicios Financieros",
-        description: "Dirigí el desarrollo de una plataforma centralizada para gestión de transferencias internacionales, procesando más de €500M diarios con total trazabilidad y cumplimiento regulatorio.",
-        technologies: ["Java", "Spring Boot", "PostgreSQL", "RabbitMQ"]
-      },
-      {
-        title: "Optimización Pipeline CI/CD",
-        description: "Rediseñé la pipeline de integración continua, reduciendo el tiempo de despliegue de 3 horas a 20 minutos y automatizando pruebas de seguridad y rendimiento.",
-        technologies: ["Jenkins", "Docker", "Ansible", "SonarQube"]
-      }
-    ],
-    bancamarch: [
-      {
-        title: "Sistema de Gestión de Patrimonio",
-        description: "Análisis funcional para plataforma de gestión patrimonial que integró datos de múltiples fuentes para proporcionar una visión unificada del cliente.",
-        technologies: [".NET Core", "SQL Server", "Angular", "SSIS"]
-      },
-      {
-        title: "Automatización de Reporting Regulatorio",
-        description: "Diseño de sistema automatizado para generación de informes regulatorios, eliminando procesos manuales y reduciendo errores en un 95%.",
-        technologies: ["Power BI", "Azure Functions", "C#"]
-      }
-    ],
-    ntt: [
-      {
-        title: "Arquitectura Cloud Banca Digital",
-        description: "Lideré la transición a microservicios para la plataforma de banca digital, mejorando la escalabilidad y permitiendo despliegues independientes para cada capacidad de negocio.",
-        technologies: ["Java", "Spring Cloud", "Docker", "GitLab CI"]
-      },
-      {
-        title: "Sistema Anti-Fraude",
-        description: "Diseño de arquitectura para detección de fraude en tiempo real utilizando machine learning y procesamiento de eventos complejos.",
-        technologies: ["Spark", "Kafka", "Oracle", "Python"]
-      }
-    ],
-    bbva: [
-      {
-        title: "Renovación Frontend Banca Personal",
-        description: "Lideré la renovación completa de la interfaz de banca personal con arquitectura basada en componentes y diseño responsive.",
-        technologies: ["React", "Redux", "Node.js", "GraphQL"]
-      },
-      {
-        title: "API Gateway",
-        description: "Implementación de capa de abstracción para unificar acceso a APIs y microservicios, con gestión centralizada de seguridad y monitorización.",
-        technologies: ["Express", "MongoDB", "Kong", "Prometheus"]
-      }
-    ],
-    ericsson: [
-      {
-        title: "Sistema de Monitorización de Red",
-        description: "Desarrollo de componentes para análisis en tiempo real de datos de red, procesando más de 1TB de datos diarios para detectar anomalías y problemas de rendimiento.",
-        technologies: ["C++", "Python", "Kafka", "Spark"]
-      },
-      {
-        title: "Optimización Algoritmos de Enrutamiento",
-        description: "Mejora de algoritmos de enrutamiento de tráfico en redes móviles, logrando reducción del 15% en latencia y mejora del 25% en throughput.",
-        technologies: ["C++", "Python", "OpenMP"]
-      }
-    ],
-    santander: [
-      {
-        title: "Migración SOA a Microservicios",
-        description: "Dirigí la transformación de arquitectura monolítica a microservicios para sistemas core bancarios, permitiendo evolución independiente de componentes.",
-        technologies: ["ESB", "Java", "Spring", "Docker"]
-      },
-      {
-        title: "Bus de Eventos Corporativo",
-        description: "Diseño e implementación de plataforma de mensajería empresarial para integración de aplicaciones críticas con procesamiento de más de 10 millones de mensajes diarios.",
-        technologies: ["IBM MQ", "WebSphere", "Java EE"]
-      }
-    ],
-    accenture: [
-      {
-        title: "Integración Post-Fusión Bancaria",
-        description: "Lideré proyecto de integración de sistemas tras fusión bancaria, consolidando datos de clientes y productos de múltiples fuentes.",
-        technologies: ["Java EE", "Oracle", "ETL", "Hibernate"]
-      },
-      {
-        title: "Migración Core Banking",
-        description: "Consultoría para migración de sistema core bancario, definiendo estrategia y arquitectura de transición para minimizar impacto operativo.",
-        technologies: ["Java", "Oracle", "WebLogic"]
-      }
-    ],
-    telefonica: [
-      {
-        title: "Sistema de Provisión de Servicios",
-        description: "Desarrollo de plataforma para automatizar provisión de servicios de telecomunicaciones, reduciendo tiempo de activación de días a minutos.",
-        technologies: [".NET", "C#", "SQL Server", "WCF"]
-      },
-      {
-        title: "CRM Departamento Técnico",
-        description: "Implementación de sistema de gestión para soporte técnico, integrando información de cliente, servicios contratados e histórico de incidencias.",
-        technologies: ["C#", "ASP.NET", "SQL Server"]
-      }
-    ],
-    ibm: [
-      {
-        title: "Modernización Aplicaciones Mainframe",
-        description: "Participé en la transformación de aplicaciones legacy a plataformas modernas, manteniendo la lógica de negocio crítica.",
-        technologies: ["COBOL", "Java", "DB2", "JSP"]
-      },
-      {
-        title: "Interfaces Web para Sistemas Legacy",
-        description: "Desarrollo de interfaces web modernas para acceso a sistemas mainframe, mejorando usabilidad manteniendo integridad de datos.",
-        technologies: ["Java", "JSP", "JavaScript", "JDBC"]
-      }
-    ],
-    microsoft: [
-      {
-        title: "Demos Tecnológicas .NET",
-        description: "Creación de aplicaciones demo para mostrar capacidades de la plataforma .NET y tecnologías emergentes Microsoft.",
-        technologies: ["C#", "ASP.NET", "WPF", "Silverlight"]
-      },
-      {
-        title: "Soporte Técnico Eventos",
-        description: "Asistencia técnica en eventos y conferencias para desarrolladores, mostrando mejores prácticas e integración de tecnologías Microsoft.",
-        technologies: ["Visual Studio", ".NET Framework"]
-      }
-    ],
-    university: [
-      {
-        title: "Mantenimiento Laboratorios Informáticos",
-        description: "Gestión y mantenimiento de equipos y software para prácticas de estudiantes de ingeniería informática.",
-        technologies: ["Linux", "Java", "PHP", "MySQL"]
-      },
-      {
-        title: "Desarrollo Material Docente",
-        description: "Colaboración en la creación de ejercicios prácticos y tutoriales para asignaturas de programación y bases de datos.",
-        technologies: ["Java", "PHP", "MySQL"]
-      }
-    ]
-  };
-  
-  // Función para abrir el modal con la experiencia seleccionada
+    };
+
+    fetchProjects();
+  }, [t]);
+    // Función para abrir el modal con la experiencia seleccionada
   const openExperienceDetails = (experience) => {
     setSelectedExperience(experience);
     document.body.style.overflow = 'hidden'; // Previene scroll en el fondo
@@ -167,10 +41,31 @@ function ProfessionalLife() {
   const closeExperienceDetails = () => {
     setSelectedExperience(null);
     document.body.style.overflow = 'auto'; // Restaura scroll
-  };  return (
+  };
+  // Mostrar indicador de carga mientras se obtienen los datos
+  if (loading) {
+    return (
+      <div className="bg-gray-50 min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <p className="ml-3 text-lg text-gray-600">{t?.professionalLife?.loading || "Loading data..."}</p>
+      </div>
+    );
+  }
+
+  // Mostrar mensaje de error si ocurre algún problema
+  if (error) {
+    return (
+      <div className="bg-gray-50 min-h-screen flex items-center justify-center">
+        <div className="text-center text-red-500">
+          <h2 className="text-2xl font-bold mb-2">Error</h2>
+          <p>{error}</p>
+        </div>
+      </div>
+    );
+  }  return (
     <div className="bg-gray-50 min-h-screen">
       <div className="container mx-auto py-12 px-4">
-        <h1 className="text-3xl font-bold text-center mb-8">Professional Life</h1>
+        <h1 className="text-3xl font-bold text-center mb-8">{t?.professionalLife?.title || "Professional Life"}</h1>
 
         {/* Introduction */}
         <div className="bg-white rounded-lg shadow-soft p-6 mb-8">
@@ -188,12 +83,9 @@ function ProfessionalLife() {
             </div>
             <div className="w-full md:w-2/3">
               <h2 className="text-2xl font-bold mb-3">Álvaro Puertas Puñal</h2>
-              <p className="text-lg text-blue-600 mb-4">Senior Solution and Enterprise Architect</p>
+              <p className="text-lg text-blue-600 mb-4">{t?.professionalLife?.jobTitle || "Senior Solution and Enterprise Architect"}</p>
               <p className="text-gray-700 mb-4">
-                With over 25 years of experience as IT software engineer, and 15 years as IT Architect, I specialize in 
-                designing scalable, resilient systems that support mission-critical business operations. 
-                My technical expertise spans cloud infrastructure, distributed systems, and 
-                enterprise application integration.
+                {t?.professionalLife?.introduction || "With over 25 years of experience as IT software engineer, and 15 years as IT Architect, I specialize in designing scalable, resilient systems that support mission-critical business operations. My technical expertise spans cloud infrastructure, distributed systems, and enterprise application integration."}
               </p>              <div className="flex flex-wrap gap-3">
                 <a 
                   href={SOCIAL_LINKS.linkedin} 
@@ -219,22 +111,20 @@ function ProfessionalLife() {
                   className="inline-flex items-center px-4 py-2 bg-[#d14836] text-white rounded-lg hover:bg-opacity-90 transition"
                 >
                   <i className="fas fa-file-pdf mr-2"></i>
-                  Download CV
+                  {t?.professionalLife?.downloadCV || "Download CV"}
                 </a>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Career Highlights */}
+        </div>        {/* Career Highlights */}
         <div className="mb-10">
-          <h2 className="text-2xl font-bold mb-6">Career Highlights</h2>
-          <div className="bg-white rounded-lg shadow-soft overflow-hidden">              <div className="border-l-4 border-blue-600 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-blue-50 transition-colors" onClick={() => openExperienceDetails('knowmad')}>
+          <h2 className="text-2xl font-bold mb-6">{t?.professionalLife?.careerHighlights || "Career Highlights"}</h2>
+          <div className="bg-white rounded-lg shadow-soft overflow-hidden"><div className="border-l-4 border-blue-600 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-blue-50 transition-colors" onClick={() => openExperienceDetails('knowmad')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 flex-shrink-0">
                     <img 
-                      src="./assets/images/knowmad_mood_logo.jpeg" 
+                      src="./assets/images/logos/knowmad_mood_logo.jpeg" 
                       alt="KnowmadMood logo" 
                       className="w-full h-full object-contain rounded"
                     />
@@ -244,29 +134,45 @@ function ProfessionalLife() {
                 <p className="text-gray-600">2023 - Present</p>
               </div>
               <p className="text-gray-700 mb-4">
-                Leading architecture initiatives for global enterprise applications, focusing on scalability, 
-                reliability, and security. Responsible for designing cloud-native solutions and 
-                modernizing legacy systems.
+                Since October 2023, as a Solution Architect at Knowmad Mood, I lead and contribute to digital transformation and enterprise architecture projects across various IT consultancies. My current role at TIREA
+                 focuses on modernizing legacy systems within the insurance sector, actively leveraging Generative AI, specifically GitHub Copilot, to optimize development efficiency and code quality.<br /><br />
+                 
+                 Previously, at MAPFRE MALTA, I served as an on-site technical lead and solution architect, designing AS-IS and TO-BE architectures and applying my insurance expertise to shape corporate architecture.<br /><br />
+                 
+                 At SANTA LUCIA SEGUROS, I was responsible for Enterprise Architecture Governance (TOGAF), defining service architectures, development models, patterns, and standards, including configuration management 
+                 and Wiki-based standards. My technical expertise spans a robust stack including Azure, Java 17 with Spring Boot and Microservices, Kafka, monitoring solutions (ELK, Prometheus, Grafana), CI/CD 
+                 (Git, GitHub, ArgoCD), and design principles like SOLID and API First, all within Agile methodologies such as Scrum and Kanban.<br /><br />
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">AWS</span>
-                <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Kubernetes</span>
-                <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Microservices</span>
-                <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Event-Driven Architecture</span>
+                <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Solution Architecture</span>
+                <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Project Management</span>
+                <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Enterprise Architecture</span>
+                <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">Insurance Expertise</span>
               </div>
             </div>              <div className="border-l-4 border-green-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-green-50 transition-colors" onClick={() => openExperienceDetails('smallworld')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex-shrink-0 bg-green-100 rounded flex items-center justify-center">
-                    <span className="text-green-700 font-bold text-sm">SW</span>
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <img 
+                      src="./assets/images/logos/small_world_financial_services_logo.jpeg" 
+                      alt="Small World Financial Services logo" 
+                      className="w-full h-full object-contain rounded"
+                    />
                   </div>
                   <h3 className="text-xl font-bold">SmallWorld Financial Services - Solution Architect</h3>
                 </div>
                 <p className="text-gray-600">2021 - 2023</p>
               </div>
               <p className="text-gray-700 mb-4">
-                Directed engineering teams in delivering high-performance, scalable applications. 
-                Implemented CI/CD pipelines and DevOps practices to improve release cycle efficiency.
+                At SmallWorld Financial Services, I played a key role as a Solution Architect, primarily focused on Enterprise Architecture Governance (TOGAF). My core responsibilities included analyzing, defining, and designing 
+                solution architectures for critical services, establishing models, patterns, and standards for software development and code control. <br /><br />
+                
+                I managed the Continuous Integration (CI/CD) system, defined application deployment and versioning methodologies, and oversaw environment configuration management, maintaining internal Wiki Architecture Standards.
+                I provided both technical and functional expert support. <br /><br />
+                
+                During this time, I worked with an advanced technology stack including AWS, Kubernetes (K8s), and Docker for microservices built with Java 17 and Spring Boot 2, 
+                implementing REST and GraphQL. I also leveraged Kafka for data processing, Redis and Memcached for caching, and databases such as Postgres, MongoDB, and DynamoDB. CI/CD practices (Sonar, Git, GitHub, Argo CD) and 
+                monitoring (ELK, Prometheus, Grafana, Instana) were fundamental, applying principles like SOLID and Design Patterns.
               </p>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Java</span>
@@ -274,11 +180,16 @@ function ProfessionalLife() {
                 <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Jenkins</span>
                 <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Docker</span>
               </div>
-            </div>              <div className="border-l-4 border-purple-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-purple-50 transition-colors" onClick={() => openExperienceDetails('bancamarch')}>
+            </div>              
+            <div className="border-l-4 border-purple-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-purple-50 transition-colors" onClick={() => openExperienceDetails('bancamarch')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex-shrink-0 bg-purple-100 rounded flex items-center justify-center">
-                    <span className="text-purple-700 font-bold text-sm">BM</span>
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <img 
+                      src="./assets/images/logos/banca_march_logo.jpeg" 
+                      alt="Banca March logo" 
+                      className="w-full h-full object-contain rounded"
+                    />
                   </div>
                   <h3 className="text-xl font-bold">Banca March - Functional Analyst</h3>
                 </div>
@@ -294,15 +205,20 @@ function ProfessionalLife() {
                 <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">Angular</span>
                 <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">REST APIs</span>
               </div>
-            </div>              <div className="border-l-4 border-red-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-red-50 transition-colors" onClick={() => openExperienceDetails('ntt')}>
+            </div>              
+            <div className="border-l-4 border-red-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-red-50 transition-colors" onClick={() => openExperienceDetails('ntt')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex-shrink-0 bg-red-100 rounded flex items-center justify-center">
-                    <span className="text-red-700 font-bold text-sm">NTT</span>
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <img 
+                      src="./assets/images/logos/avoris.jpeg" 
+                      alt="Avoris logo" 
+                      className="w-full h-full object-contain rounded"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold">Everis / NTT Data - Software Architect</h3>
+                  <h3 className="text-xl font-bold">Avoris Travel - Head of Architecture</h3>
                 </div>
-                <p className="text-gray-600">2018 - 2020</p>
+                <p className="text-gray-600">2017 - 2020</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Led the design and implementation of enterprise-scale banking applications with a focus on 
@@ -314,15 +230,20 @@ function ProfessionalLife() {
                 <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">Oracle</span>
                 <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">GitLab CI</span>
               </div>
-            </div>              <div className="border-l-4 border-amber-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-amber-50 transition-colors" onClick={() => openExperienceDetails('bbva')}>
+            </div>              
+            <div className="border-l-4 border-amber-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-amber-50 transition-colors" onClick={() => openExperienceDetails('bbva')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex-shrink-0 bg-amber-100 rounded-lg flex items-center justify-center">
-                    <span className="text-amber-700 font-bold text-sm">BBVA</span>
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <img 
+                      src="./assets/images/logos/hotelbeds_group_logo.jpeg" 
+                      alt="BBVA logo" 
+                      className="w-full h-full object-contain rounded"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold">BBVA - Technical Lead</h3>
+                  <h3 className="text-xl font-bold">Hotelbeds - Solution Architect</h3>
                 </div>
-                <p className="text-gray-600">2017 - 2018</p>
+                <p className="text-gray-600">2016 - 2017</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Managed a team of developers working on digital transformation initiatives for retail banking.
@@ -334,13 +255,18 @@ function ProfessionalLife() {
                 <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm">MongoDB</span>
                 <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm">Express</span>
               </div>
-            </div>              <div className="border-l-4 border-emerald-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-emerald-50 transition-colors" onClick={() => openExperienceDetails('ericsson')}>
+            </div>              
+            <div className="border-l-4 border-emerald-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-emerald-50 transition-colors" onClick={() => openExperienceDetails('ericsson')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex-shrink-0 bg-emerald-100 rounded flex items-center justify-center">
-                    <span className="text-emerald-700 font-bold text-xs">ERICSSON</span>
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <img 
+                      src="./assets/images/logos/avoris.jpeg" 
+                      alt="Avoris logo" 
+                      className="w-full h-full object-contain rounded"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold">Ericsson - Senior Developer</h3>
+                  <h3 className="text-xl font-bold">Avoris Travel - Head of Architecture</h3>
                 </div>
                 <p className="text-gray-600">2015 - 2017</p>
               </div>
@@ -354,15 +280,20 @@ function ProfessionalLife() {
                 <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">Kafka</span>
                 <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm">Spark</span>
               </div>
-            </div>              <div className="border-l-4 border-cyan-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-cyan-50 transition-colors" onClick={() => openExperienceDetails('santander')}>
+            </div>              
+            <div className="border-l-4 border-cyan-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-cyan-50 transition-colors" onClick={() => openExperienceDetails('santander')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex-shrink-0 bg-cyan-100 rounded-lg flex items-center justify-center">
-                    <span className="text-cyan-700 font-bold text-sm">SAN</span>
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <img 
+                      src="./assets/images/logos/cgi_logo.jpeg" 
+                      alt="CGI logo" 
+                      className="w-full h-full object-contain rounded"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold">Santander Bank - Integration Specialist</h3>
+                  <h3 className="text-xl font-bold">Brujula Tecnologías de la Información  - Solution Architect</h3>
                 </div>
-                <p className="text-gray-600">2013 - 2015</p>
+                <p className="text-gray-600">2012 - 2014</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Designed and implemented integration solutions for core banking systems. Migrated legacy applications 
@@ -374,15 +305,20 @@ function ProfessionalLife() {
                 <span className="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-sm">IBM MQ</span>
                 <span className="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-sm">WebSphere</span>
               </div>
-            </div>              <div className="border-l-4 border-indigo-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-indigo-50 transition-colors" onClick={() => openExperienceDetails('accenture')}>
+            </div>              
+            <div className="border-l-4 border-indigo-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-indigo-50 transition-colors" onClick={() => openExperienceDetails('accenture')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex-shrink-0 bg-indigo-100 rounded flex items-center justify-center">
-                    <span className="text-indigo-700 font-bold text-sm">ACC</span>
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <img 
+                      src="./assets/images/logos/grupoavalon_logo.jpeg" 
+                      alt="Grupo Avalon logo" 
+                      className="w-full h-full object-contain rounded"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold">Accenture - Consultant</h3>
+                  <h3 className="text-xl font-bold">Avalon Tecnologías de la Información - Development Manager</h3>
                 </div>
-                <p className="text-gray-600">2011 - 2013</p>
+                <p className="text-gray-600">2011 - 2012</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Provided technical consulting for clients in the financial sector. Specialized in system integration 
@@ -394,15 +330,20 @@ function ProfessionalLife() {
                 <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">ETL</span>
                 <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">Hibernate</span>
               </div>
-            </div>              <div className="border-l-4 border-fuchsia-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-fuchsia-50 transition-colors" onClick={() => openExperienceDetails('telefonica')}>
+            </div>              
+            <div className="border-l-4 border-fuchsia-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-fuchsia-50 transition-colors" onClick={() => openExperienceDetails('telefonica')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex-shrink-0 bg-fuchsia-100 rounded flex items-center justify-center overflow-hidden">
-                    <span className="text-fuchsia-700 font-bold text-sm">TEF</span>
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <img 
+                      src="./assets/images/logos/cic_consulting_informatico_logo.jpeg" 
+                      alt="CIC Consulting Informático Logo" 
+                      className="w-full h-full object-contain rounded"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold">Telefonica - Application Developer</h3>
+                  <h3 className="text-xl font-bold">CIC Consulting Informático - Project Manager</h3>
                 </div>
-                <p className="text-gray-600">2009 - 2011</p>
+                <p className="text-gray-600">2008 - 2011</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Developed internal applications for business process automation. Created solutions for customer 
@@ -414,15 +355,20 @@ function ProfessionalLife() {
                 <span className="px-3 py-1 bg-fuchsia-100 text-fuchsia-700 rounded-full text-sm">SQL Server</span>
                 <span className="px-3 py-1 bg-fuchsia-100 text-fuchsia-700 rounded-full text-sm">WCF</span>
               </div>
-            </div>              <div className="border-l-4 border-rose-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-rose-50 transition-colors" onClick={() => openExperienceDetails('ibm')}>
+            </div>              
+            <div className="border-l-4 border-rose-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-rose-50 transition-colors" onClick={() => openExperienceDetails('ibm')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex-shrink-0 bg-rose-100 rounded flex items-center justify-center">
-                    <span className="text-rose-700 font-bold text-sm">IBM</span>
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <img 
+                      src="./assets/images/logos/atos_logo.jpeg" 
+                      alt="Atos logo" 
+                      className="w-full h-full object-contain rounded"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold">IBM - Junior Programmer</h3>
+                  <h3 className="text-xl font-bold">Atos Origin - Project Manager</h3>
                 </div>
-                <p className="text-gray-600">2007 - 2009</p>
+                <p className="text-gray-600">2005 - 2008</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Started professional career as part of the global delivery team. Worked on mainframe modernization 
@@ -438,12 +384,16 @@ function ProfessionalLife() {
               <div className="border-l-4 border-lime-500 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-lime-50 transition-colors" onClick={() => openExperienceDetails('microsoft')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex-shrink-0 bg-lime-100 rounded flex items-center justify-center">
-                    <span className="text-lime-700 font-bold text-sm">MS</span>
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <img 
+                      src="./assets/images/logos/globalia_logo.jpeg" 
+                      alt="Globalia Corp logo" 
+                      className="w-full h-full object-contain rounded"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold">Microsoft - Intern</h3>
+                  <h3 className="text-xl font-bold">Globalia Corp - Senior Engineer to Project Manager</h3>
                 </div>
-                <p className="text-gray-600">2006 - 2007</p>
+                <p className="text-gray-600">2001 - 2005</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Internship at Microsoft Spain during university studies. Assisted in the development of demo 
@@ -459,12 +409,16 @@ function ProfessionalLife() {
               <div className="border-l-4 border-orange-500 pl-6 py-6 pr-6 cursor-pointer hover:bg-orange-50 transition-colors" onClick={() => openExperienceDetails('university')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 flex-shrink-0 bg-orange-100 rounded flex items-center justify-center">
-                    <span className="text-orange-700 font-bold text-sm">UCM</span>
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <img 
+                      src="./assets/images/logos/viewnext_logo.jpeg" 
+                      alt="Viewnext logo" 
+                      className="w-full h-full object-contain rounded"
+                    />
                   </div>
-                  <h3 className="text-xl font-bold">University of Madrid - Lab Assistant</h3>
+                  <h3 className="text-xl font-bold">INSA (IBM) Global Services - Senior Developer</h3>
                 </div>
-                <p className="text-gray-600">2004 - 2006</p>
+                <p className="text-gray-600">2000 - 2001</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Provided technical support for computer labs while completing undergraduate studies. 
@@ -478,17 +432,15 @@ function ProfessionalLife() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Skills & Expertise */}
+        </div>        {/* Skills & Expertise */}
         <div className="mb-10">
-          <h2 className="text-2xl font-bold mb-6">Skills & Expertise</h2>
+          <h2 className="text-2xl font-bold mb-6">{t?.professionalLife?.skillsExpertise || "Skills & Expertise"}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="bg-white rounded-lg shadow-soft p-6">
               <div className="text-3xl text-blue-600 mb-4">
                 <i className="fas fa-cloud"></i>
               </div>
-              <h3 className="text-xl font-bold mb-3">Cloud & Infrastructure</h3>
+              <h3 className="text-xl font-bold mb-3">{t?.professionalLife?.cloudInfrastructure || "Cloud & Infrastructure"}</h3>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-center">
                   <i className="fas fa-check-circle text-green-500 mr-2"></i>
@@ -513,7 +465,7 @@ function ProfessionalLife() {
               <div className="text-3xl text-blue-600 mb-4">
                 <i className="fas fa-code"></i>
               </div>
-              <h3 className="text-xl font-bold mb-3">Development & Architecture</h3>
+              <h3 className="text-xl font-bold mb-3">{t?.professionalLife?.devArchitecture || "Development & Architecture"}</h3>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-center">
                   <i className="fas fa-check-circle text-green-500 mr-2"></i>
@@ -538,7 +490,7 @@ function ProfessionalLife() {
               <div className="text-3xl text-blue-600 mb-4">
                 <i className="fas fa-wrench"></i>
               </div>
-              <h3 className="text-xl font-bold mb-3">DevOps & Tooling</h3>
+              <h3 className="text-xl font-bold mb-3">{t?.professionalLife?.devOpsTooling || "DevOps & Tooling"}</h3>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-center">
                   <i className="fas fa-check-circle text-green-500 mr-2"></i>
@@ -563,7 +515,7 @@ function ProfessionalLife() {
               <div className="text-3xl text-blue-600 mb-4">
                 <i className="fas fa-sitemap"></i>
               </div>
-              <h3 className="text-xl font-bold mb-3">Systems Integration</h3>
+              <h3 className="text-xl font-bold mb-3">{t?.professionalLife?.systemsIntegration || "Systems Integration"}</h3>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-center">
                   <i className="fas fa-check-circle text-green-500 mr-2"></i>
@@ -588,7 +540,7 @@ function ProfessionalLife() {
               <div className="text-3xl text-blue-600 mb-4">
                 <i className="fas fa-shield-alt"></i>
               </div>
-              <h3 className="text-xl font-bold mb-3">Security & Compliance</h3>
+              <h3 className="text-xl font-bold mb-3">{t?.professionalLife?.securityCompliance || "Security & Compliance"}</h3>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-center">
                   <i className="fas fa-check-circle text-green-500 mr-2"></i>
@@ -613,7 +565,7 @@ function ProfessionalLife() {
               <div className="text-3xl text-blue-600 mb-4">
                 <i className="fas fa-users-cog"></i>
               </div>
-              <h3 className="text-xl font-bold mb-3">Leadership & Methodology</h3>
+              <h3 className="text-xl font-bold mb-3">{t?.professionalLife?.leadershipMethodology || "Leadership & Methodology"}</h3>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-center">
                   <i className="fas fa-check-circle text-green-500 mr-2"></i>
@@ -634,16 +586,12 @@ function ProfessionalLife() {
               </ul>
             </div>
           </div>
-        </div>
-
-        {/* GitHub Projects */}
+        </div>        {/* GitHub Projects */}
         <div className="mb-10">
-          <h2 className="text-2xl font-bold mb-6">GitHub Projects</h2>
+          <h2 className="text-2xl font-bold mb-6">{t?.professionalLife?.githubProjects || "GitHub Projects"}</h2>
           <div className="bg-white rounded-lg shadow-soft p-6">
             <p className="mb-6 text-gray-700">
-              Explore some of my public projects and contributions on GitHub.
-              From architectural templates and utility libraries to open source contributions,
-              you can find examples of my code and technical approaches.
+              {t?.professionalLife?.githubDescription || "Explore some of my public projects and contributions on GitHub. From architectural templates and utility libraries to open source contributions, you can find examples of my code and technical approaches."}
             </p>
             
             <div className="flex justify-center">
@@ -654,7 +602,7 @@ function ProfessionalLife() {
                 className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors flex items-center"
               >
                 <i className="fab fa-github mr-2 text-xl"></i>
-                View GitHub Profile
+                {t?.professionalLife?.viewGitHubProfile || "View GitHub Profile"}
               </a>
             </div>
           </div>
@@ -662,63 +610,63 @@ function ProfessionalLife() {
 
         {/* How Endurance Sports Influences My Work */}
         <div>
-          <h2 className="text-2xl font-bold mb-6">How Endurance Sports Influences My Work</h2>
+          <h2 className="text-2xl font-bold mb-6">{t?.professionalLife?.sportsInfluence || "How Endurance Sports Influences My Work"}</h2>
           <div className="bg-white rounded-lg shadow-soft p-6">
             <p className="text-gray-700 mb-4">
-              My passion for ultramarathons and endurance sports has significantly shaped my approach to software architecture and leadership:
+              {t?.professionalLife?.sportsDescription || "My passion for ultramarathons and endurance sports has significantly shaped my approach to software architecture and leadership:"}
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div className="border-l-4 border-blue-500 pl-4 py-2">
-                <h3 className="font-bold mb-2">Strategic Pacing</h3>
+                <h3 className="font-bold mb-2">{t?.professionalLife?.strategicPacing || "Strategic Pacing"}</h3>
                 <p className="text-gray-600">
-                  Just as in an ultramarathon, I've learned that sustainable progress in software development requires strategic pacing, planning for obstacles, and maintaining consistent progress rather than unsustainable sprints.
+                  {t?.professionalLife?.pacingDescription || "Just as in an ultramarathon, I've learned that sustainable progress in software development requires strategic pacing, planning for obstacles, and maintaining consistent progress rather than unsustainable sprints."}
                 </p>
               </div>
               
               <div className="border-l-4 border-blue-500 pl-4 py-2">
-                <h3 className="font-bold mb-2">Resilience & Problem Solving</h3>
+                <h3 className="font-bold mb-2">{t?.professionalLife?.resilience || "Resilience & Problem Solving"}</h3>
                 <p className="text-gray-600">
-                  Endurance racing teaches constant adaptation to changing conditions. This translates to creating resilient systems that can handle unexpected challenges and quickly adapt to changing requirements.
+                  {t?.professionalLife?.resilienceDescription || "Endurance racing teaches constant adaptation to changing conditions. This translates to creating resilient systems that can handle unexpected challenges and quickly adapt to changing requirements."}
                 </p>
               </div>
               
               <div className="border-l-4 border-blue-500 pl-4 py-2">
-                <h3 className="font-bold mb-2">Preparation & Detail Orientation</h3>
+                <h3 className="font-bold mb-2">{t?.professionalLife?.preparation || "Preparation & Detail Orientation"}</h3>
                 <p className="text-gray-600">
-                  The meticulous preparation required for ultra-distance races mirrors the detailed planning and foresight needed in system architecture, where small oversights can cascade into significant problems.
+                  {t?.professionalLife?.preparationDescription || "The meticulous preparation required for ultra-distance races mirrors the detailed planning and foresight needed in system architecture, where small oversights can cascade into significant problems."}
                 </p>
               </div>
               
               <div className="border-l-4 border-blue-500 pl-4 py-2">
-                <h3 className="font-bold mb-2">Continuous Improvement</h3>
+                <h3 className="font-bold mb-2">{t?.professionalLife?.continuousImprovement || "Continuous Improvement"}</h3>
                 <p className="text-gray-600">
-                  Each race provides lessons to improve performance. Similarly, I bring a mindset of continuous refinement and evolution to software development, embracing retrospectives and iterative enhancement.
+                  {t?.professionalLife?.improvementDescription || "Each race provides lessons to improve performance. Similarly, I bring a mindset of continuous refinement and evolution to software development, embracing retrospectives and iterative enhancement."}
                 </p>
               </div>            </div>
           </div>
         </div>
       </div>
-      
-      {/* Modal de Proyectos */}
+        {/* Modal de Proyectos */}
       {selectedExperience && (
         <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold">
-                  {selectedExperience === 'knowmad' && "Proyectos en KnowmadMood"}
-                  {selectedExperience === 'smallworld' && "Proyectos en SmallWorld Financial Services"}
-                  {selectedExperience === 'bancamarch' && "Proyectos en Banca March"}
-                  {selectedExperience === 'ntt' && "Proyectos en Everis / NTT Data"}
-                  {selectedExperience === 'bbva' && "Proyectos en BBVA"}
-                  {selectedExperience === 'ericsson' && "Proyectos en Ericsson"}
-                  {selectedExperience === 'santander' && "Proyectos en Santander Bank"}
-                  {selectedExperience === 'accenture' && "Proyectos en Accenture"}
-                  {selectedExperience === 'telefonica' && "Proyectos en Telefonica"}
-                  {selectedExperience === 'ibm' && "Proyectos en IBM"}
-                  {selectedExperience === 'microsoft' && "Proyectos en Microsoft"}
-                  {selectedExperience === 'university' && "Proyectos en Universidad de Madrid"}
+                  {`${t?.professionalLife?.projects || "Projects at"} `}
+                  {selectedExperience === 'knowmad' && "KnowmadMood"}
+                  {selectedExperience === 'smallworld' && "SmallWorld Financial Services"}
+                  {selectedExperience === 'bancamarch' && "Banca March"}
+                  {selectedExperience === 'ntt' && "Everis / NTT Data"}
+                  {selectedExperience === 'bbva' && "BBVA"}
+                  {selectedExperience === 'ericsson' && "Ericsson"}
+                  {selectedExperience === 'santander' && "Santander Bank"}
+                  {selectedExperience === 'accenture' && "Accenture"}
+                  {selectedExperience === 'telefonica' && "Telefonica"}
+                  {selectedExperience === 'ibm' && "IBM"}
+                  {selectedExperience === 'microsoft' && "Microsoft"}
+                  {selectedExperience === 'university' && "Universidad de Madrid"}
                 </h2>
                 <button 
                   onClick={closeExperienceDetails}
@@ -752,7 +700,7 @@ function ProfessionalLife() {
                   onClick={closeExperienceDetails}
                   className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
                 >
-                  Cerrar
+                  {t?.professionalLife?.close || "Close"}
                 </button>
               </div>
             </div>

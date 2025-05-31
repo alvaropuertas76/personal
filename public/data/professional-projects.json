@@ -1,0 +1,153 @@
+{
+  "projectsData": {
+    "knowmad": [
+      {
+        "title": "Tirea",
+        "description": "TIREA is a company specializing in providing core insurance products and solutions. In this role, I am focused on the modernization of legacy systems within the insurance domain. A key aspect of this project involves leveraging generative AI tools, specifically GitHub Copilot, to enhance development efficiency, improve code quality, and accelerate the modernization process.",
+        "technologies": ["GitHub Copilot", "Generative AI", "Glassfish Server", "Java 7", "Legacy Migration", "Oracle 9", "Spring Framework"]   
+      },
+      {
+        "title": "Mapfre Malta",
+        "description": "As the technical lead and solutions architect for the Mapfre Malta project, I worked on-site with the client to design and implement ASIS and TO-BE architecture assessments. Beyond leading the technical aspects, I leveraged my insurance industry expertise to shape a corporate architecture tailored to meet strategic objectives and operational demands.",
+        "technologies": ["ASIS Development", "TO-BE Development", "Insurance Domain Expertise", "Solutions Architecture", "Azure" ]
+      },
+      {
+        "title": "Santa Lucía Seguros",
+        "description": "Government of Enterprise Architecture (TOGAF). Analyze, define, and design solutions architectures core services. Define the model, patterns, standards of software development and code control. Configuration management of environments. Maintenance of WIKI Architecture Standards Technical and Functional expert support.",
+        "technologies": ["Azure", "Java 17", "Spring Boot", "Apache Camel", "RedHat Fuse", "Kafka", "Git",  "RedHat OpenShift", "Jira", "Confluence", "SonarQube"]
+      }
+    ],
+    "smallworld": [
+      {
+        "title": "Plataforma de Servicios Financieros",
+        "description": "Dirigí el desarrollo de una plataforma centralizada para gestión de transferencias internacionales, procesando más de €500M diarios con total trazabilidad y cumplimiento regulatorio.",
+        "technologies": ["Java", "Spring Boot", "PostgreSQL", "RabbitMQ"]
+      },
+      {
+        "title": "Optimización Pipeline CI/CD",
+        "description": "Rediseñé la pipeline de integración continua, reduciendo el tiempo de despliegue de 3 horas a 20 minutos y automatizando pruebas de seguridad y rendimiento.",
+        "technologies": ["Jenkins", "Docker", "Ansible", "SonarQube"]
+      }
+    ],
+    "bancamarch": [
+      {
+        "title": "Sistema de Gestión de Patrimonio",
+        "description": "Análisis funcional para plataforma de gestión patrimonial que integró datos de múltiples fuentes para proporcionar una visión unificada del cliente.",
+        "technologies": [".NET Core", "SQL Server", "Angular", "SSIS"]
+      },
+      {
+        "title": "Automatización de Reporting Regulatorio",
+        "description": "Diseño de sistema automatizado para generación de informes regulatorios, eliminando procesos manuales y reduciendo errores en un 95%.",
+        "technologies": ["Power BI", "Azure Functions", "C#"]
+      }
+    ],
+    "ntt": [
+      {
+        "title": "Arquitectura Cloud Banca Digital",
+        "description": "Lideré la transición a microservicios para la plataforma de banca digital, mejorando la escalabilidad y permitiendo despliegues independientes para cada capacidad de negocio.",
+        "technologies": ["Java", "Spring Cloud", "Docker", "GitLab CI"]
+      },
+      {
+        "title": "Sistema Anti-Fraude",
+        "description": "Diseño de arquitectura para detección de fraude en tiempo real utilizando machine learning y procesamiento de eventos complejos.",
+        "technologies": ["Spark", "Kafka", "Oracle", "Python"]
+      }
+    ],
+    "bbva": [
+      {
+        "title": "Renovación Frontend Banca Personal",
+        "description": "Lideré la renovación completa de la interfaz de banca personal con arquitectura basada en componentes y diseño responsive.",
+        "technologies": ["React", "Redux", "Node.js", "GraphQL"]
+      },
+      {
+        "title": "API Gateway",
+        "description": "Implementación de capa de abstracción para unificar acceso a APIs y microservicios, con gestión centralizada de seguridad y monitorización.",
+        "technologies": ["Express", "MongoDB", "Kong", "Prometheus"]
+      }
+    ],
+    "ericsson": [
+      {
+        "title": "Sistema de Monitorización de Red",
+        "description": "Desarrollo de componentes para análisis en tiempo real de datos de red, procesando más de 1TB de datos diarios para detectar anomalías y problemas de rendimiento.",
+        "technologies": ["C++", "Python", "Kafka", "Spark"]
+      },
+      {
+        "title": "Optimización Algoritmos de Enrutamiento",
+        "description": "Mejora de algoritmos de enrutamiento de tráfico en redes móviles, logrando reducción del 15% en latencia y mejora del 25% en throughput.",
+        "technologies": ["C++", "Python", "OpenMP"]
+      }
+    ],
+    "santander": [
+      {
+        "title": "Migración SOA a Microservicios",
+        "description": "Dirigí la transformación de arquitectura monolítica a microservicios para sistemas core bancarios, permitiendo evolución independiente de componentes.",
+        "technologies": ["ESB", "Java", "Spring", "Docker"]
+      },
+      {
+        "title": "Bus de Eventos Corporativo",
+        "description": "Diseño e implementación de plataforma de mensajería empresarial para integración de aplicaciones críticas con procesamiento de más de 10 millones de mensajes diarios.",
+        "technologies": ["IBM MQ", "WebSphere", "Java EE"]
+      }
+    ],
+    "accenture": [
+      {
+        "title": "Integración Post-Fusión Bancaria",
+        "description": "Lideré proyecto de integración de sistemas tras fusión bancaria, consolidando datos de clientes y productos de múltiples fuentes.",
+        "technologies": ["Java EE", "Oracle", "ETL", "Hibernate"]
+      },
+      {
+        "title": "Migración Core Banking",
+        "description": "Consultoría para migración de sistema core bancario, definiendo estrategia y arquitectura de transición para minimizar impacto operativo.",
+        "technologies": ["Java", "Oracle", "WebLogic"]
+      }
+    ],
+    "telefonica": [
+      {
+        "title": "Sistema de Provisión de Servicios",
+        "description": "Desarrollo de plataforma para automatizar provisión de servicios de telecomunicaciones, reduciendo tiempo de activación de días a minutos.",
+        "technologies": [".NET", "C#", "SQL Server", "WCF"]
+      },
+      {
+        "title": "CRM Departamento Técnico",
+        "description": "Implementación de sistema de gestión para soporte técnico, integrando información de cliente, servicios contratados e histórico de incidencias.",
+        "technologies": ["C#", "ASP.NET", "SQL Server"]
+      }
+    ],
+    "ibm": [
+      {
+        "title": "Modernización Aplicaciones Mainframe",
+        "description": "Participé en la transformación de aplicaciones legacy a plataformas modernas, manteniendo la lógica de negocio crítica.",
+        "technologies": ["COBOL", "Java", "DB2", "JSP"]
+      },
+      {
+        "title": "Interfaces Web para Sistemas Legacy",
+        "description": "Desarrollo de interfaces web modernas para acceso a sistemas mainframe, mejorando usabilidad manteniendo integridad de datos.",
+        "technologies": ["Java", "JSP", "JavaScript", "JDBC"]
+      }
+    ],
+    "microsoft": [
+      {
+        "title": "Demos Tecnológicas .NET",
+        "description": "Creación de aplicaciones demo para mostrar capacidades de la plataforma .NET y tecnologías emergentes Microsoft.",
+        "technologies": ["C#", "ASP.NET", "WPF", "Silverlight"]
+      },
+      {
+        "title": "Soporte Técnico Eventos",
+        "description": "Asistencia técnica en eventos y conferencias para desarrolladores, mostrando mejores prácticas e integración de tecnologías Microsoft.",
+        "technologies": ["Visual Studio", ".NET Framework"]
+      }
+    ],
+    "university": [
+      {
+        "title": "Mantenimiento Laboratorios Informáticos",
+        "description": "Gestión y mantenimiento de equipos y software para prácticas de estudiantes de ingeniería informática.",
+        "technologies": ["Linux", "Java", "PHP", "MySQL"]
+      },
+      {
+        "title": "Desarrollo Material Docente",
+        "description": "Colaboración en la creación de ejercicios prácticos y tutoriales para asignaturas de programación y bases de datos.",
+        "technologies": ["Java", "PHP", "MySQL"]
+      }
+    ]
+  }
+}

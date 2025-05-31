@@ -18,6 +18,43 @@ export default {  // Navigation menu
     futureProjects: 'Future Projects',
   },
   
+  // Professional Life
+  professionalLife: {
+    title: 'Professional Life',
+    jobTitle: 'Senior Solution and Enterprise Architect',
+    introduction: 'With over 25 years of experience as IT software engineer, and 15 years as IT Architect, I specialize in designing scalable, resilient systems that support mission-critical business operations. My technical expertise spans cloud infrastructure, distributed systems, and enterprise application integration.',
+    careerHighlights: 'Career Highlights',
+    skillsExpertise: 'Skills & Expertise',
+    githubProjects: 'GitHub Projects',
+    githubDescription: 'Explore some of my public projects and contributions on GitHub. From architectural templates and utility libraries to open source contributions, you can find examples of my code and technical approaches.',
+    viewGitHubProfile: 'View GitHub Profile',
+    sportsInfluence: 'How Endurance Sports Influences My Work',
+    sportsDescription: 'My passion for ultramarathons and endurance sports has significantly shaped my approach to software architecture and leadership:',
+    projects: 'Projects at',
+    close: 'Close',
+    downloadCV: 'Download CV',
+    loading: 'Loading data...',
+    error: 'Failed to load data. Please try again later.',
+    
+    // Skills
+    cloudInfrastructure: 'Cloud & Infrastructure',
+    devArchitecture: 'Development & Architecture',
+    devOpsTooling: 'DevOps & Tooling',
+    systemsIntegration: 'Systems Integration',
+    securityCompliance: 'Security & Compliance',
+    leadershipMethodology: 'Leadership & Methodology',
+    
+    // Sports influence
+    strategicPacing: 'Strategic Pacing',
+    pacingDescription: 'Just as in an ultramarathon, I\'ve learned that sustainable progress in software development requires strategic pacing, planning for obstacles, and maintaining consistent progress rather than unsustainable sprints.',
+    resilience: 'Resilience & Problem Solving',
+    resilienceDescription: 'Endurance racing teaches constant adaptation to changing conditions. This translates to creating resilient systems that can handle unexpected challenges and quickly adapt to changing requirements.',
+    preparation: 'Preparation & Detail Orientation',
+    preparationDescription: 'The meticulous preparation required for ultra-distance races mirrors the detailed planning and foresight needed in system architecture, where small oversights can cascade into significant problems.',
+    continuousImprovement: 'Continuous Improvement',
+    improvementDescription: 'Each race provides lessons to improve performance. Similarly, I bring a mindset of continuous refinement and evolution to software development, embracing retrospectives and iterative enhancement.',
+  },
+  
   // Calendar
   calendar: {
     title: 'Race & Training Calendar',
