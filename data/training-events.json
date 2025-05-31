@@ -14,5 +14,13 @@
     "category": "training",
     "description": "Intensive 3-week training block for upcoming races",
     "link": null
+  },
+  {
+    "id": 7,
+    "title": "Running",
+    "date": "2025-04-31",
+    "category": "training",
+    "description": "20' warmup, 8x2' intervals at 5k pace, rec 1', 10' cooldown",
+    "link": null
   }
 ]
