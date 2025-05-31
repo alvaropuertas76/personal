@@ -1,0 +1,18 @@
+[
+  {
+    "id": 2,
+    "title": "Long Training Run",
+    "date": "2023-01-15",
+    "category": "training",
+    "description": "30km trail training run with elevation",
+    "link": null
+  },
+  {
+    "id": 6,
+    "title": "Training Block",
+    "date": "2023-11-15",
+    "category": "training",
+    "description": "Intensive 3-week training block for upcoming races",
+    "link": null
+  }
+]

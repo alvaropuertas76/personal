@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "title": "Marathon des Sables",
+    "date": "2022-04-25",
+    "category": "race",
+    "description": "250km self-supported race across the Sahara Desert, Morocco",
+    "link": "/race/mds-2022"
+  },
+  {
+    "id": 3,
+    "title": "Ironman Frankfurt",
+    "date": "2023-06-18",
+    "category": "race",
+    "description": "Full distance triathlon in Germany",
+    "link": "/race/ironman-frankfurt-2023"
+  },
+  {
+    "id": 5,
+    "title": "Ultra Trail Mont Blanc",
+    "date": "2023-08-28",
+    "category": "race",
+    "description": "100 mile trail race in the Alps",
+    "link": "/race/utmb-2023"
+  },
+  {
+    "id": 7,
+    "title": "Boston Marathon",
+    "date": "2024-04-15",
+    "category": "race",
+    "description": "Road marathon in Boston, MA",
+    "link": "/race/boston-2024"
+  },
+  {
+    "id": 9,
+    "title": "Maratón de Invierno",
+    "date": "2025-01-15",
+    "category": "race",
+    "description": "Carrera de invierno en condiciones extremas",
+    "link": "/race/winter-marathon-2025"
+  },
+  {
+    "id": 10,
+    "title": "Warsaw Marathon",
+    "date": "2025-09-28",
+    "category": "race",
+    "description": "Marathon in Warsaw, Poland",
+    "link": "/race/warsaw-marathon-2025"
+  },
+  {
+    "id": 11,
+    "title": "La Desertica",
+    "date": "2025-10-18",
+    "category": "race",
+    "description": "Ultramarathon in the Spanish desert of Almeria",
+    "link": "/race/la-desertica-2025"
+  }
+]
