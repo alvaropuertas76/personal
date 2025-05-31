@@ -54,8 +54,7 @@ export default {  // Menú de navegación
     continuousImprovement: 'Mejora Continua',
     improvementDescription: 'Cada carrera proporciona lecciones para mejorar el rendimiento. De manera similar, aporto una mentalidad de refinamiento continuo y evolución al desarrollo de software, adoptando retrospectivas y mejoras iterativas.',
   },
-  
-  // Calendario
+    // Calendario
   calendar: {
     title: 'Calendario de Carreras y Entrenamientos',
     loading: 'Cargando eventos...',
@@ -72,6 +71,19 @@ export default {  // Menú de navegación
       training: 'Entrenamiento',
       rest: 'Descanso',
       travel: 'Viaje',
+    },
+    weather: {
+      title: 'Pronóstico del tiempo',
+      loading: 'Cargando pronóstico...',
+      error: 'No se pudo cargar el pronóstico',
+      temperature: 'Temperatura',
+      humidity: 'Humedad',
+      wind: 'Viento',
+      forecast: 'Previsión',
+      noLocation: 'Ubicación no disponible',
+      degrees: '°C',
+      kmh: 'km/h',
+      percent: '%'
     },
     weekDays: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
     months: [

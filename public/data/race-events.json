@@ -53,6 +53,16 @@
     "date": "2025-10-18",
     "category": "race",
     "description": "Ultramarathon in the Spanish desert of Almeria",
+    "location": "Almeria, Spain",
     "link": "/race/la-desertica-2025"
+  },
+  {
+    "id": 13,
+    "title": "Madrid Marathon Test",
+    "date": "2025-06-15",
+    "category": "race",
+    "description": "Test event with explicit location",
+    "location": "Madrid, Spain",
+    "link": "/race/madrid-test-2025"
   }
 ]

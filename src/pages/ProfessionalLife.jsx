@@ -196,8 +196,8 @@ function ProfessionalLife() {
                 <p className="text-gray-600">2020 - 2021</p>
               </div>
               <p className="text-gray-700 mb-4">
-                Esto si que fue una puta mierda de experiencia profesional. Muy poco recomendable entrar en esta empresa, eso del
-                Great place to work se lo tendrían que mirar por la cantidad de hijos de puta que hay en ese edificio.
+                In the "Wealth Project," my primary role involved functional documentation, as well as the analysis, definition, and design of new functionalities within a bank's existing technological infrastructure. This position 
+                required a deep understanding of and adaptation to legacy systems, working directly with core technologies such as COBOL, CICS, and DB2 to integrate and develop solutions that advanced project objectives.
               </p>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">.NET</span>
@@ -221,8 +221,13 @@ function ProfessionalLife() {
                 <p className="text-gray-600">2017 - 2020</p>
               </div>
               <p className="text-gray-700 mb-4">
-                Led the design and implementation of enterprise-scale banking applications with a focus on 
-                security and regulatory compliance. Mentored junior developers and introduced DevOps practices.
+                In the tourism sector, I led the modernization of booking platforms and Enterprise Architecture Governance (TOGAF) in a high-volume environment. I managed Continuous Integration Systems (Jira, Bitbucket, SonarQube, Bamboo) 
+                for over 200 repositories and 3 million lines of code, including the migration of MDBManager to AWS with RedHat OpenShift 4. I defined integration engine interfaces and product models, administered deployments (on-premises and Cloud),
+                 and designed transversal microservices (Authentication, Configuration, Log, Traces). <br /><br />
+                 
+                 My role involved analyzing, designing, and maintaining functional and technological architectures for the front, service, and data layers, 
+                 as well as defining software development standards. Technically, my experience includes Java 8 with Spring Boot 2, Microservices, REST/GraphQL, automated testing (Cucumber, Junit5), Kafka, Redis, databases (Postgres, MongoDB), 
+                 security (OAuth2), and a robust monitoring stack (ELK, Prometheus, Grafana, Instana) and CI/CD (Jenkins, Sonar, Git).
               </p>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">Java</span>

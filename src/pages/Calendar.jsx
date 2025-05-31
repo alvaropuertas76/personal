@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CALENDAR_CATEGORIES } from '../utils/constants';
 import { useLanguage } from '../translations/LanguageContext.jsx';
+import { getWeatherForecast, getLocationFromEvent } from '../utils/weatherService';
 
 function Calendar() {
   // State for the selected year (default to current year)
@@ -13,6 +14,10 @@ function Calendar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDateEvents, setSelectedDateEvents] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
+  // Estado para el pronóstico del tiempo
+  const [weatherData, setWeatherData] = useState(null);
+  const [loadingWeather, setLoadingWeather] = useState(false);
+  const [weatherError, setWeatherError] = useState(null);
   
   // Obtener las traducciones
   const { t, language } = useLanguage();
@@ -111,13 +116,74 @@ function Calendar() {
   // Years to show in dropdown (5 years back, 5 years forward)
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 11 }, (_, i) => currentYear - 5 + i);
-  
-  // Función para manejar el clic en un día del calendario
+    // Función para manejar el clic en un día del calendario
   const handleDayClick = (date, events) => {
     if (events.length > 0) {
       setSelectedDate(date);
       setSelectedDateEvents(events);
       setIsModalOpen(true);
+      
+      // Resetear el estado del pronóstico al abrir un nuevo modal
+      setWeatherData(null);
+      setWeatherError(null);
+      setLoadingWeather(false);
+      
+      // Buscar si hay eventos de carrera (tipo 'race') para esta fecha
+      const raceEvents = events.filter(event => event.category === 'race');
+      
+      // Si hay eventos de carrera, obtener el pronóstico del tiempo para la primera carrera
+      if (raceEvents.length > 0) {
+        fetchWeatherForEvent(raceEvents[0]);
+      }
+    }
+  };  // Función para obtener el pronóstico del tiempo para un evento
+  const fetchWeatherForEvent = async (event) => {
+    setLoadingWeather(true);
+    setWeatherError(null);
+    
+    try {
+      console.log('Obteniendo pronóstico para evento:', event);
+      console.log('Título del evento:', event.title);
+      console.log('Descripción del evento:', event.description);
+      
+      // Obtener la ubicación a partir del evento
+      const location = getLocationFromEvent(event);
+      
+      if (!location) {
+        console.error('No se pudo determinar la ubicación del evento');
+        setWeatherError(t?.calendar?.weather?.noLocation || "Ubicación no disponible");
+        setLoadingWeather(false);
+        return;
+      }
+      
+      console.log('Ubicación determinada:', location);
+      
+      // Llamar a la API de pronóstico del tiempo
+      const forecast = await getWeatherForecast(location, language || 'es');
+      
+      if (forecast) {
+        console.log('Datos de pronóstico recibidos:', forecast);
+        setWeatherData(forecast);
+      } else {
+        // Hacer un segundo intento con una ubicación alternativa
+        const alternativeLocation = event.title.split(' ')[0]; // Usar la primera palabra del título
+        console.log('Intentando con ubicación alternativa:', alternativeLocation);
+        
+        const alternativeForecast = await getWeatherForecast(alternativeLocation, language || 'es');
+        
+        if (alternativeForecast) {
+          console.log('Datos de pronóstico alternativos recibidos:', alternativeForecast);
+          setWeatherData(alternativeForecast);
+        } else {
+          console.error('No se recibieron datos de pronóstico después de intentos alternativos');
+          setWeatherError(t?.calendar?.weather?.error || "No se pudo cargar el pronóstico");
+        }
+      }
+    } catch (error) {
+      console.error("Error al obtener el pronóstico:", error);
+      setWeatherError(`${t?.calendar?.weather?.error || "No se pudo cargar el pronóstico"}: ${error.message}`);
+    } finally {
+      setLoadingWeather(false);
     }
   };
     return (
@@ -276,8 +342,7 @@ function Calendar() {
                 <p className="text-center text-gray-500">{t?.calendar?.noEvents || "No hay eventos para esta fecha."}</p>
               ) : (
                 <div className="space-y-4">
-                  {selectedDateEvents.map(event => (
-                    <div key={event.id} className={`border-l-4 border-${CALENDAR_CATEGORIES[event.category].color} pl-4 p-3 bg-gray-50 rounded-r`}>
+                  {selectedDateEvents.map(event => (                    <div key={event.id} className={`border-l-4 border-${CALENDAR_CATEGORIES[event.category].color} pl-4 p-3 bg-gray-50 rounded-r`}>
                       <div className="flex justify-between items-start">
                         <h4 className="font-semibold text-lg">{event.title}</h4>
                         <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold bg-${CALENDAR_CATEGORIES[event.category].color} bg-opacity-20 text-${CALENDAR_CATEGORIES[event.category].color}`}>
@@ -291,6 +356,54 @@ function Calendar() {
                         })}
                       </p>
                       <p className="mt-2 text-gray-700">{event.description}</p>
+                        {/* Mostrar pronóstico del tiempo solo para eventos de tipo "race" */}
+                      {event.category === 'race' && (
+                        <div className="mt-4 border-t pt-3 weather-forecast">
+                          <h5 className="font-medium text-sm mb-2">{t?.calendar?.weather?.title || "Pronóstico del tiempo"}</h5>
+                          
+                          {loadingWeather && (
+                            <div className="flex items-center text-gray-500 text-sm">
+                              <div className="inline-block animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-blue-500 mr-2"></div>
+                              <span>{t?.calendar?.weather?.loading || "Cargando pronóstico..."}</span>
+                            </div>
+                          )}
+                          
+                          {weatherError && !loadingWeather && (
+                            <p className="text-sm text-red-500">{weatherError}</p>
+                          )}
+                          
+                          {weatherData && !loadingWeather && !weatherError && (
+                            <div className="bg-blue-50 p-3 rounded-md weather-forecast-content">
+                              <div className="flex items-center mb-2">
+                                <img 
+                                  src={weatherData.iconUrl} 
+                                  alt={weatherData.description} 
+                                  className="w-10 h-10 weather-icon"
+                                />
+                                <div className="ml-2">
+                                  <p className="font-medium">{weatherData.cityName}</p>
+                                  <p className="text-sm text-gray-600 capitalize">{weatherData.description}</p>
+                                </div>
+                              </div>
+                              
+                              <div className="grid grid-cols-3 gap-2 text-sm">
+                                <div>
+                                  <p className="text-gray-500">{t?.calendar?.weather?.temperature || "Temperatura"}</p>
+                                  <p className="font-medium">{weatherData.temperature} {t?.calendar?.weather?.degrees || "°C"}</p>
+                                </div>
+                                <div>
+                                  <p className="text-gray-500">{t?.calendar?.weather?.humidity || "Humedad"}</p>
+                                  <p className="font-medium">{weatherData.humidity} {t?.calendar?.weather?.percent || "%"}</p>
+                                </div>
+                                <div>
+                                  <p className="text-gray-500">{t?.calendar?.weather?.wind || "Viento"}</p>
+                                  <p className="font-medium">{weatherData.windSpeed} {t?.calendar?.weather?.kmh || "km/h"}</p>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
                       
                       {event.link && (
                         <div className="mt-3">

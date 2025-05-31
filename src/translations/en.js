@@ -54,8 +54,7 @@ export default {  // Navigation menu
     continuousImprovement: 'Continuous Improvement',
     improvementDescription: 'Each race provides lessons to improve performance. Similarly, I bring a mindset of continuous refinement and evolution to software development, embracing retrospectives and iterative enhancement.',
   },
-  
-  // Calendar
+    // Calendar
   calendar: {
     title: 'Race & Training Calendar',
     loading: 'Loading events...',
@@ -72,6 +71,19 @@ export default {  // Navigation menu
       training: 'Training',
       rest: 'Rest Day',
       travel: 'Travel',
+    },
+    weather: {
+      title: 'Weather Forecast',
+      loading: 'Loading forecast...',
+      error: 'Could not load forecast',
+      temperature: 'Temperature',
+      humidity: 'Humidity',
+      wind: 'Wind',
+      forecast: 'Forecast',
+      noLocation: 'Location not available',
+      degrees: '°C',
+      kmh: 'km/h',
+      percent: '%'
     },
     weekDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     months: [
