@@ -1,0 +1,21 @@
+{
+  "yearlyKilometers": [
+    { "year": 2008, "kilometers": 520 },
+    { "year": 2009, "kilometers": 750 },
+    { "year": 2010, "kilometers": 920 },
+    { "year": 2011, "kilometers": 1250 },
+    { "year": 2012, "kilometers": 1580 },
+    { "year": 2013, "kilometers": 1890 },
+    { "year": 2014, "kilometers": 2300 },
+    { "year": 2015, "kilometers": 2750 },
+    { "year": 2016, "kilometers": 3100 },
+    { "year": 2017, "kilometers": 3450 },
+    { "year": 2018, "kilometers": 3800 },
+    { "year": 2019, "kilometers": 4200 },
+    { "year": 2020, "kilometers": 3800 },
+    { "year": 2021, "kilometers": 4500 },
+    { "year": 2022, "kilometers": 4800 },
+    { "year": 2023, "kilometers": 5200 },
+    { "year": 2024, "kilometers": 3600 }
+  ]
+}
