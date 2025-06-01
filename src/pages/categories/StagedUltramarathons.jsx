@@ -125,9 +125,8 @@ function StagedUltramarathons() {
           <h1 className="text-3xl font-bold mb-2">Staged Ultramarathons</h1>
           <p className="text-gray-600">Multi-day ultra adventures around the world</p>
         </div>
-        <div className="mt-4 md:mt-0">
-          <Link 
-            to="/template" 
+        <div className="mt-4 md:mt-0">          <Link 
+            to="/next-challenges" 
             className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
           >
             <i className="fas fa-plus-circle mr-2"></i>

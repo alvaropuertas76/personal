@@ -432,9 +432,7 @@ function Calendar() {
                   {t?.calendar?.close || "Cerrar"}
                 </button>
               </div>
-            </div>
-          </div>
-        )}
+            </div>          </div>        )}
           </>
         )}
       </div>

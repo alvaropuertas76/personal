@@ -224,10 +224,9 @@ function NextChallenges() {
                     </div>
                   </div>
                   <p className="text-gray-700 mb-4 text-sm line-clamp-3">{race.description}</p>
-                </div>
-                <div className="p-4 pt-0 mt-auto">
+                </div>                <div className="p-4 pt-0 mt-auto">
                   <Link 
-                    to={`/template`} 
+                    to="/next-challenges" 
                     className="inline-block w-full text-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
                   >
                     View Race Details
@@ -392,11 +391,10 @@ function NextChallenges() {
           </div>
         </div>
       )}
-      
-      {/* Create Challenge CTA */}
+        {/* Create Challenge CTA */}
       <div className="mt-12 text-center">
         <Link 
-          to="/template" 
+          to="/next-challenges" 
           className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
         >
           <i className="fas fa-plus-circle mr-2"></i>

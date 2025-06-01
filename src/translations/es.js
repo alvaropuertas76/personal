@@ -1,11 +1,11 @@
 // Traducciones en español
-export default {  // Menú de navegación
+export default {
+  // Menú de navegación
   navigation: {
     home: 'Inicio',
     professionalLife: 'Vida Profesional',
     nextChallenges: 'Próximos Retos',
     calendar: 'Calendario',
-    raceTemplate: 'Plantilla de Carrera',
     supporterZone: 'Zona de Soporte'
   },
   
@@ -16,6 +16,7 @@ export default {  // Menú de navegación
     stagedUltramarathons: 'Ultramaratones por Etapas',
     triathlons: 'Triatlones',
     futureProjects: 'Proyectos Futuros',
+    statistics: 'Estadísticas',
   },
   
   // Vida Profesional
@@ -92,13 +93,27 @@ export default {  // Menú de navegación
       'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
     ],
   },
-  
-  // Componentes comunes
+    // Componentes comunes
   common: {
     languageSelector: 'Seleccionar idioma',
     spanish: 'Español',
     english: 'Inglés',
   },
   
-  // Añade más secciones según necesites para otras páginas
+  // Estadísticas
+  statistics: {
+    title: 'Estadísticas de Carrera',
+    yearlyDistanceTitle: 'Kilómetros Corridos por Año',
+    kilometersPerYear: 'Kilómetros por Año',
+    totalStats: 'Estadísticas Totales',
+    totalDistance: 'Distancia Total',
+    averageYearlyDistance: 'Promedio Anual',
+    yearsRunning: 'Años Corriendo',
+    kilometers: 'Kilómetros',
+    year: 'Año',
+    dataDescription: 'Datos recopilados desde 2008 hasta el presente, mostrando mi progresión en distancias recorridas a lo largo de los años.',
+    errorLoading: 'Error al cargar los datos estadísticos'
+  },
+  
+    // Añade más secciones según necesites para otras páginas
 };

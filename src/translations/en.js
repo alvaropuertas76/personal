@@ -1,11 +1,11 @@
 // English translations
-export default {  // Navigation menu
+export default {
+  // Navigation menu
   navigation: {
     home: 'Home',
     professionalLife: 'Professional Life',
     nextChallenges: 'Next Challenges',
     calendar: 'Calendar',
-    raceTemplate: 'Race Template',
     supporterZone: 'Supporter Zone'
   },
   
@@ -16,6 +16,7 @@ export default {  // Navigation menu
     stagedUltramarathons: 'Staged Ultramarathons',
     triathlons: 'Triathlons',
     futureProjects: 'Future Projects',
+    statistics: 'Statistics',
   },
   
   // Professional Life
@@ -92,13 +93,28 @@ export default {  // Navigation menu
       'September', 'October', 'November', 'December'
     ],
   },
-  
-  // Common components
+    // Common components
   common: {
     languageSelector: 'Select language',
     spanish: 'Spanish',
     english: 'English',
   },
   
-  // Add more sections as needed for other pages
+  // Statistics
+  statistics: {
+    title: 'Running Statistics',
+    yearlyDistanceTitle: 'Kilometers Run by Year',
+    kilometersPerYear: 'Kilometers per Year',
+    totalStats: 'Total Statistics',
+    totalDistance: 'Total Distance',
+    averageYearlyDistance: 'Average Yearly Distance',
+    yearsRunning: 'Years Running',
+    kilometers: 'Kilometers',
+    year: 'Year',
+    dataDescription: 'Data collected from 2008 to present, showing my progression in distance covered over the years.',
+    errorLoading: 'Error loading statistics data'
+  },
+  
+    // Add more sections as needed for other pages
 };
+

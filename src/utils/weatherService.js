@@ -2,8 +2,11 @@
  * Servicio para obtener el pronóstico del tiempo para eventos de tipo "Race"
  */
 
-// API key gratuita de OpenWeatherMap (es recomendable moverla a variables de entorno en producción)
-const WEATHER_API_KEY = '4c184d717271a98f80cafd3e32bd7d50'; // Sustituye esto con tu API key
+// API key de OpenWeatherMap obtenida de variables de entorno
+const WEATHER_API_KEY = import.meta.env.VITE_OPENWEATHERMAP_API_KEY || process.env.OPENWEATHERMAP_API_KEY || '';
+if (!WEATHER_API_KEY) {
+  console.error('¡Error! API key de OpenWeatherMap no encontrada. Asegúrate de definir la variable de entorno VITE_OPENWEATHERMAP_API_KEY');
+}
 const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
 // Caché simple para evitar múltiples llamadas para la misma ubicación

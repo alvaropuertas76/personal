@@ -96,9 +96,8 @@ function FutureProjects() {
           <h1 className="text-3xl font-bold mb-2">Future Projects</h1>
           <p className="text-gray-600">Upcoming races and challenges I'm preparing for</p>
         </div>
-        <div className="mt-4 md:mt-0">
-          <Link 
-            to="/template" 
+        <div className="mt-4 md:mt-0">          <Link 
+            to="/next-challenges" 
             className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
           >
             <i className="fas fa-plus-circle mr-2"></i>
@@ -165,9 +164,8 @@ function FutureProjects() {
               </div>
               <p className="text-gray-700 mb-4 text-sm line-clamp-3">{race.description}</p>
             </div>
-            <div className="p-4 pt-0 mt-auto">
-              <Link 
-                to={`/template`} 
+            <div className="p-4 pt-0 mt-auto">              <Link 
+                to="/next-challenges" 
                 className="inline-block w-full text-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
               >
                 View Race Details

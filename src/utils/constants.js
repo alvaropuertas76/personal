@@ -13,12 +13,12 @@ export const NAV_LINKS = [
       { name: "Marathons", path: "/marathons", key: "marathons" },
       { name: "Ultramarathons", path: "/ultramarathons", key: "ultramarathons" },
       { name: "Staged Ultramarathons", path: "/staged-ultramarathons", key: "stagedUltramarathons" },
-      { name: "Triathlons", path: "/triathlons", key: "triathlons" }
+      { name: "Triathlons", path: "/triathlons", key: "triathlons" },
+      { name: "Statistics", path: "/statistics", key: "statistics" }
     ]
   },
   { name: "Next Challenges", path: "/next-challenges", key: "nextChallenges" },
   { name: "Professional Life", path: "/professional", key: "professionalLife" },
-  { name: "Race Template", path: "/template", key: "raceTemplate" },
   { name: "Supporter Zone", path: "/supporter-zone", key: "supporterZone" }
 ];
 
