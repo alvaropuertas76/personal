@@ -6,6 +6,7 @@ import ProfessionalLife from './pages/ProfessionalLife';
 import RaceDetail from './pages/RaceDetail';
 import NextChallenges from './pages/NextChallenges';
 import SupporterZone from './pages/SupporterZone';
+import SocialMedia from './pages/SocialMedia';
 import NotFound from './pages/NotFound';
 import './styles/global.css';
 import { LanguageProvider } from './translations/LanguageContext.jsx';
@@ -34,6 +35,7 @@ function App() {
             <Route path="statistics" element={<Statistics />} />
             <Route path="race/:id" element={<RaceDetail />} /><Route path="next-challenges" element={<NextChallenges />} />
             <Route path="supporter-zone" element={<SupporterZone />} />
+            <Route path="social-media" element={<SocialMedia />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

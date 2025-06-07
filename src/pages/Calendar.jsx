@@ -321,7 +321,8 @@ function Calendar() {
           <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="absolute inset-0 bg-black opacity-50" onClick={() => setIsModalOpen(false)}></div>
             
-            <div className="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 z-10 overflow-y-auto max-h-[90vh]">              <div className="flex justify-between items-center mb-4">
+            <div className={`bg-white rounded-lg shadow-lg w-full z-10 overflow-y-auto max-h-[90vh] ${selectedDateEvents.some(event => event.garmin_link) ? 'max-w-4xl' : 'max-w-lg'} p-6`}>
+              <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-bold">{t?.calendar?.eventsOn || "Eventos del"} {selectedDate.toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', { 
                   year: 'numeric', 
                   month: 'long', 
@@ -356,7 +357,22 @@ function Calendar() {
                         })}
                       </p>
                       <p className="mt-2 text-gray-700">{event.description}</p>
-                        {/* Mostrar pronóstico del tiempo solo para eventos de tipo "race" */}
+                      
+                      {event.garmin_link && (
+                        <div className="mt-4 border-t pt-4">
+                          <h5 className="font-medium text-sm mb-3">{t?.calendar?.garmin?.title || "Actividad de Strava"}</h5>
+                          <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+                            <iframe
+                              src={event.garmin_link}
+                              className="absolute top-0 left-0 w-full h-full border-0 rounded-lg"
+                              allowFullScreen
+                              loading="lazy"
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Mostrar pronóstico del tiempo solo para eventos de tipo "race" */}
                       {event.category === 'race' && (
                         <div className="mt-4 border-t pt-3 weather-forecast">
                           <h5 className="font-medium text-sm mb-2">{t?.calendar?.weather?.title || "Pronóstico del tiempo"}</h5>

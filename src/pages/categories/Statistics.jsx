@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLanguage } from '../../translations/LanguageContext';
+import { useLanguage } from '../../translations/LanguageContext.jsx';
 // Intentamos importar los datos del archivo JSON
 // Nota: La importación puede fallar si el JSON tiene comentarios o formato incorrecto
 // import jsonData from '../../data/runningStats.json';

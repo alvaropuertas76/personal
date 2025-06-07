@@ -5,7 +5,8 @@
     "date": "2023-01-15",
     "category": "training",
     "description": "30km trail training run with elevation",
-    "link": null
+    "link": null,
+    "garmin_link": "https://connect.garmin.com/modern/activity/345678912"
   },
   {
     "id": 301,
@@ -30,5 +31,18 @@
     "category": "training",
     "description": "20' warmup, 5 km at threshold pace, rest 3' + 1 km at full effort, 10' cooldown",
     "link": null
+  },
+  {
+    "id": 304,
+    "title": "Running",
+    "date": "2025-06-02",
+    "category": "training",
+    "description": "1h easy run, zone 2",
+    "link": null,
+    "garmin_link": "https://www.strava.com/activities/14669105215"
   }
 ]
+
+
+
+

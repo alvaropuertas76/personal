@@ -19,6 +19,7 @@ export const NAV_LINKS = [
   },
   { name: "Next Challenges", path: "/next-challenges", key: "nextChallenges" },
   { name: "Professional Life", path: "/professional", key: "professionalLife" },
+  { name: "Social Media", path: "/social-media", key: "socialMedia" },
   { name: "Supporter Zone", path: "/supporter-zone", key: "supporterZone" }
 ];
 

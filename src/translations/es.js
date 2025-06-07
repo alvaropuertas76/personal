@@ -6,9 +6,22 @@ export default {
     professionalLife: 'Vida Profesional',
     nextChallenges: 'Próximos Retos',
     calendar: 'Calendario',
-    supporterZone: 'Zona de Soporte'
+    supporterZone: 'Zona de Soporte',
+    socialMedia: 'Redes Sociales'
   },
   
+  // Redes Sociales
+  socialMedia: {
+    title: 'Redes Sociales',
+    loading: 'Cargando publicaciones...',
+    error: 'No se pudieron cargar las publicaciones',
+    instagram: {
+      title: 'Instagram',
+      noPhotos: 'No hay fotos disponibles',
+      viewOnInstagram: 'Ver en Instagram'
+    }
+  },
+
   // Categorías
   categories: {
     marathons: 'Maratones',

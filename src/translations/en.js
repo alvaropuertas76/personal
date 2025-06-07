@@ -6,7 +6,8 @@ export default {
     professionalLife: 'Professional Life',
     nextChallenges: 'Next Challenges',
     calendar: 'Calendar',
-    supporterZone: 'Supporter Zone'
+    supporterZone: 'Supporter Zone',
+    socialMedia: 'Social Media'
   },
   
   // Categories
@@ -115,6 +116,17 @@ export default {
     errorLoading: 'Error loading statistics data'
   },
   
+  // Social Media
+  socialMedia: {
+    title: 'Social Media',
+    loading: 'Loading posts...',
+    error: 'Could not load posts',
+    instagram: {
+      title: 'Instagram',
+      noPhotos: 'No photos available',
+      viewOnInstagram: 'View on Instagram'
+    }
+  },
     // Add more sections as needed for other pages
 };
 
