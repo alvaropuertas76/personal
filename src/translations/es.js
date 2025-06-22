@@ -128,5 +128,24 @@ export default {
     errorLoading: 'Error al cargar los datos estadísticos'
   },
   
+  // Común
+  common: {
+    languageSelector: 'Seleccionar idioma',
+    spanish: 'Español',
+    english: 'Inglés',
+    private: 'Privado'
+  },
+
+  // Sección Privada
+  private: {
+    login: 'Acceso Privado',
+    password: 'Contraseña',
+    submit: 'Acceder',
+    error: 'Contraseña incorrecta',
+    calendar: 'Calendario de Entrenamiento',
+    loading: 'Cargando calendario...',
+    calendarError: 'Error al cargar el calendario'
+  },
+
     // Añade más secciones según necesites para otras páginas
 };

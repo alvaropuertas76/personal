@@ -63,7 +63,7 @@ function ProfessionalLife() {
       </div>
     );
   }  return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen professional-life-container">
       <div className="container mx-auto py-12 px-4">
         <h1 className="text-3xl font-bold text-center mb-8">{t?.professionalLife?.title || "Professional Life"}</h1>
 
@@ -119,7 +119,45 @@ function ProfessionalLife() {
         </div>        {/* Career Highlights */}
         <div className="mb-10">
           <h2 className="text-2xl font-bold mb-6">{t?.professionalLife?.careerHighlights || "Career Highlights"}</h2>
-          <div className="bg-white rounded-lg shadow-soft overflow-hidden"><div className="border-l-4 border-blue-600 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-blue-50 transition-colors" onClick={() => openExperienceDetails('knowmad')}>
+          <div className="bg-white rounded-lg shadow-soft overflow-hidden">
+            <div className="border-l-4 border-teal-600 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-teal-50 transition-colors" onClick={() => openExperienceDetails('gekko')}>
+              <div className="flex flex-col md:flex-row justify-between mb-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 flex-shrink-0">
+                    <img 
+                      src="./assets/images/logos/gekkogroup_logo.jpeg" 
+                      alt="Gekko Group logo" 
+                      className="w-full h-full object-contain rounded"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "./assets/images/placeholder-logo.png";
+                      }}
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold">Gekko Group - Core Engine IT Manager</h3>
+                </div>
+                <p className="text-gray-600">JUL 2025 - Presente</p>
+              </div>
+              <p className="text-gray-700 mb-4">
+                Como parte del núcleo del equipo digital, me enfoco en mejorar el rendimiento, la escalabilidad y la fiabilidad de nuestra plataforma de reservas. Mi rol implica optimizar el motor de reservas principal y mantener operaciones de búsqueda y reserva de alta disponibilidad y alto rendimiento. Trabajo extensamente en mejorar los pipelines de procesamiento de datos para asegurar un flujo de datos en tiempo real y un alto rendimiento, al mismo tiempo que colaboro en decisiones arquitectónicas y mejoras a nivel de sistema.<br /><br />                Las responsabilidades clave incluyen:<br /><br />
+                <ul className="list-disc pl-5">
+                    <li>Liderar un equipo con enfoque en la entrega, la colaboración y la innovación.</li>
+                    <li>Asegurar la entrega consistente y a tiempo de características y mejoras alineadas con las prioridades del negocio.</li>
+                    <li>Optimizar el procesamiento de middleware y los tiempos de respuesta a través de APIs y sistemas frontend.</li>
+                    <li>Asegurar la tolerancia a fallos y la alta disponibilidad dentro de un entorno de sistema distribuido.</li>
+                    <li>Monitorizar KPIs internos para identificar proactivamente áreas de mejora.</li>
+                    <li>Analizar y resolver cuellos de botella de rendimiento para mejorar continuamente la eficiencia del sistema.</li>
+                </ul><br />
+                Este rol combina profundos desafíos técnicos con colaboración estratégica, permitiéndome impulsar soluciones de impacto que mejoran tanto la satisfacción del usuario como la robustez del sistema.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm">Cloud Architecture</span>
+                <span className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm">Microservices</span>
+                <span className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm">AWS</span>
+                <span className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm">Kubernetes</span>
+              </div>
+            </div>
+            <div className="border-l-4 border-blue-600 pl-6 py-6 pr-6 mb-1 cursor-pointer hover:bg-blue-50 transition-colors" onClick={() => openExperienceDetails('knowmad')}>
               <div className="flex flex-col md:flex-row justify-between mb-2">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 flex-shrink-0">
@@ -131,11 +169,11 @@ function ProfessionalLife() {
                   </div>
                   <h3 className="text-xl font-bold">KnowmadMood - Solution Architect</h3>
                 </div>
-                <p className="text-gray-600">2023 - Present</p>
+                <p className="text-gray-600">OCT 2023 - JUL 2025</p>
               </div>
               <p className="text-gray-700 mb-4">
-                Since October 2023, as a Solution Architect at Knowmad Mood, I lead and contribute to digital transformation and enterprise architecture projects across various IT consultancies. My current role at TIREA
-                 focuses on modernizing legacy systems within the insurance sector, actively leveraging Generative AI, specifically GitHub Copilot, to optimize development efficiency and code quality.<br /><br />
+                Since October 2023, as a Solution Architect at Knowmad Mood, I lead and contribute to digital transformation and enterprise architecture projects across various IT consultancies. <br /><br />
+                 My current role at TIREA focuses on modernizing legacy systems within the insurance sector, actively leveraging Generative AI, specifically GitHub Copilot, to optimize development efficiency and code quality.<br /><br />
                  
                  Previously, at MAPFRE MALTA, I served as an on-site technical lead and solution architect, designing AS-IS and TO-BE architectures and applying my insurance expertise to shape corporate architecture.<br /><br />
                  
@@ -161,7 +199,7 @@ function ProfessionalLife() {
                   </div>
                   <h3 className="text-xl font-bold">SmallWorld Financial Services - Solution Architect</h3>
                 </div>
-                <p className="text-gray-600">2021 - 2023</p>
+                <p className="text-gray-600">SEPT 2021 - OCT 2023</p>
               </div>
               <p className="text-gray-700 mb-4">
                 At SmallWorld Financial Services, I played a key role as a Solution Architect, primarily focused on Enterprise Architecture Governance (TOGAF). My core responsibilities included analyzing, defining, and designing 
@@ -193,7 +231,7 @@ function ProfessionalLife() {
                   </div>
                   <h3 className="text-xl font-bold">Banca March - Functional Analyst</h3>
                 </div>
-                <p className="text-gray-600">2020 - 2021</p>
+                <p className="text-gray-600">MAR 2020 - SEPT 2021</p>
               </div>
               <p className="text-gray-700 mb-4">
                 In the "Wealth Project," my primary role involved functional documentation, as well as the analysis, definition, and design of new functionalities within a bank's existing technological infrastructure. This position 
@@ -218,7 +256,7 @@ function ProfessionalLife() {
                   </div>
                   <h3 className="text-xl font-bold">Avoris Travel - Head of Architecture</h3>
                 </div>
-                <p className="text-gray-600">2017 - 2020</p>
+                <p className="text-gray-600">JAN 2017 - MAR 2020</p>
               </div>
               <p className="text-gray-700 mb-4">
                 In the tourism sector, I led the modernization of booking platforms and Enterprise Architecture Governance (TOGAF) in a high-volume environment. I managed Continuous Integration Systems (Jira, Bitbucket, SonarQube, Bamboo) 
@@ -248,7 +286,7 @@ function ProfessionalLife() {
                   </div>
                   <h3 className="text-xl font-bold">Hotelbeds - Solution Architect</h3>
                 </div>
-                <p className="text-gray-600">2016 - 2017</p>
+                <p className="text-gray-600">JUN 2016 - JAN 2017</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Managed a team of developers working on digital transformation initiatives for retail banking.
@@ -273,7 +311,7 @@ function ProfessionalLife() {
                   </div>
                   <h3 className="text-xl font-bold">Avoris Travel - Head of Architecture</h3>
                 </div>
-                <p className="text-gray-600">2015 - 2017</p>
+                <p className="text-gray-600">APR 2014 - JUN 2016</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Developed telecommunications software for mobile network operators. Specialized in high-throughput 
@@ -298,7 +336,7 @@ function ProfessionalLife() {
                   </div>
                   <h3 className="text-xl font-bold">Brujula Tecnologías de la Información  - Solution Architect</h3>
                 </div>
-                <p className="text-gray-600">2012 - 2014</p>
+                <p className="text-gray-600">SEPT 2012 - APR 2014</p>
               </div>
               <p className="text-gray-700 mb-4">
                 Designed and implemented integration solutions for core banking systems. Migrated legacy applications 
@@ -657,9 +695,9 @@ function ProfessionalLife() {
         <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">
+              <div className="flex justify-between items-center mb-6">                <h2 className="text-2xl font-bold">
                   {`${t?.professionalLife?.projects || "Projects at"} `}
+                  {selectedExperience === 'gekko' && "Gekko Group"}
                   {selectedExperience === 'knowmad' && "KnowmadMood"}
                   {selectedExperience === 'smallworld' && "SmallWorld Financial Services"}
                   {selectedExperience === 'bancamarch' && "Banca March"}

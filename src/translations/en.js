@@ -127,6 +127,25 @@ export default {
       viewOnInstagram: 'View on Instagram'
     }
   },
+    // Common
+  common: {
+    languageSelector: 'Select language',
+    spanish: 'Spanish',
+    english: 'English',
+    private: 'Private'
+  },
+
+  // Private Section
+  private: {
+    login: 'Private Access',
+    password: 'Password',
+    submit: 'Enter',
+    error: 'Incorrect password',
+    calendar: 'Training Calendar',
+    loading: 'Loading calendar...',
+    calendarError: 'Error loading calendar'
+  },
+
     // Add more sections as needed for other pages
 };
 

@@ -1,74 +1,39 @@
-# Personal Website - Álvaro Puertas
+# React + Vite Template
 
-Una aplicación web personal que muestra mi trayectoria deportiva, profesional y próximos retos.
+A modern React template for web applications and games, featuring React 18, Vite, TailwindCSS, and Material UI.
 
-## Características Principales
-
-- 🏃‍♂️ Calendario de carreras y entrenamientos
-- 💼 Sección de vida profesional
-- 🌟 Zona de patrocinadores
-- 📱 Integración con redes sociales
-- 🌍 Soporte multiidioma (ES/EN)
-- 📊 Estadísticas deportivas
-- 🗺️ Mapas interactivos
-- 🌤️ Integración con pronóstico del tiempo
-- 📸 Galería de Instagram
-- ⚡ Integración con Strava
-
-## Estructura del Proyecto
+## Project Structure
 
 ```
 ├── src/
-│   ├── components/      # Componentes reutilizables
-│   ├── pages/          # Páginas principales y categorías
-│   │   └── categories/ # Subcategorías de carreras
-│   ├── translations/   # Archivos de idiomas
-│   ├── utils/         # Servicios y utilidades
-│   └── styles/        # Estilos globales
-├── public/
-│   ├── assets/        # Imágenes y recursos estáticos
-│   └── data/         # Archivos JSON de datos
+│   ├── App.jsx          # Main application component
+│   ├── main.jsx         # Application entry point
+│   └── index.css        # Global styles (Tailwind)
+├── public/              # Static assets
+├── index.html           # HTML template
+├── vite.config.js       # Vite configuration
+├── tailwind.config.js   # Tailwind configuration
+├── postcss.config.js    # PostCSS configuration
+└── eslint.config.js     # ESLint configuration
 ```
 
-## Tecnologías Utilizadas
+## Development Guidelines
 
-- ⚛️ React 18
-- 🛠️ Vite
-- 🎨 TailwindCSS
-- 📱 Material UI
-- 🌐 React Router
-- 🌍 i18n (Internacionalización)
-- 🗺️ Google Maps API
-- 🌤️ OpenWeather API
-- 📸 Instagram Embed
-- ⚡ Strava API
+- Modify `index.html` and `src/App.jsx` as needed
+- Create new folders or files in `src/` directory as needed
+- Style components using TailwindCSS utility classes
+- Avoid modifying `src/main.jsx` and `src/index.css`
+- Only modify `vite.config.js` if absolutely necessary
 
-## Comandos Disponibles
+## Available Scripts
+- `pnpm install` - Install dependencies
+- `pnpm run dev` - Start development server
+- `pnpm run lint` - Lint source files
 
-- `pnpm install` - Instalar dependencias
-- `pnpm run dev` - Iniciar servidor de desarrollo
-- `pnpm run build` - Construir para producción
-- `pnpm run preview` - Previsualizar build
-- `pnpm run lint` - Ejecutar linter
-- `pnpm run deploy` - Desplegar en GitHub Pages
+## Tech Stack
 
-## Variables de Entorno
-
-El proyecto requiere las siguientes variables de entorno en un archivo `.env`:
-
-```
-VITE_OPENWEATHERMAP_API_KEY=tu_api_key
-VITE_INSTAGRAM_ACCESS_TOKEN=tu_token
-VITE_INSTAGRAM_USER_ID=tu_user_id
-```
-
-## Integración con APIs
-
-- **OpenWeather**: Para pronóstico del tiempo en eventos
-- **Instagram**: Para mostrar feed de fotos
-- **Strava**: Para actividades deportivas
-- **Google Maps**: Para visualización de mapas
-
-## Despliegue
-
-La aplicación está configurada para desplegarse automáticamente en GitHub Pages usando el script `deploy.js`.
+- React
+- Vite
+- TailwindCSS
+- ESLint
+- Javascript

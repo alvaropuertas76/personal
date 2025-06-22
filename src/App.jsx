@@ -8,8 +8,11 @@ import NextChallenges from './pages/NextChallenges';
 import SupporterZone from './pages/SupporterZone';
 import SocialMedia from './pages/SocialMedia';
 import NotFound from './pages/NotFound';
+import PrivateLogin from './pages/PrivateLogin';
+import PrivateCalendar from './pages/PrivateCalendar';
 import './styles/global.css';
 import { LanguageProvider } from './translations/LanguageContext.jsx';
+
 
 // Category Pages
 import Marathons from './pages/categories/Marathons';
@@ -22,7 +25,7 @@ import Statistics from './pages/categories/Statistics';
 function App() {  
   return (
     <LanguageProvider>
-      <Router basename="/personal">
+      <Router basename="/personal/">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -34,8 +37,9 @@ function App() {
             <Route path="future-projects" element={<FutureProjects />} />            
             <Route path="statistics" element={<Statistics />} />
             <Route path="race/:id" element={<RaceDetail />} /><Route path="next-challenges" element={<NextChallenges />} />
-            <Route path="supporter-zone" element={<SupporterZone />} />
-            <Route path="social-media" element={<SocialMedia />} />
+            <Route path="supporter-zone" element={<SupporterZone />} />            <Route path="social-media" element={<SocialMedia />} />
+            <Route path="private" element={<PrivateLogin />} />
+            <Route path="private/calendar" element={<PrivateCalendar />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

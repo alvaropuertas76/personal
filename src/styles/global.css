@@ -185,3 +185,24 @@ a:focus, button:focus {
   border-radius: 0.5rem;
   transition: all 0.3s ease;
 }
+
+/* Animation for hover on experience entries */
+.professional-life-experience {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.professional-life-experience:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure lists in ProfessionalLife have proper styling */
+.professional-life-container ul {
+  list-style-type: disc !important;
+  padding-left: 1.5rem !important;
+  margin-bottom: 1rem;
+}
+
+.professional-life-container ul li {
+  margin-bottom: 0.5rem;
+}
