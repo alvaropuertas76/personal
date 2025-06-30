@@ -21,12 +21,29 @@
       // Mostrar mensaje visible en la consola
       console.error('%c⚠️ ERROR DE GOOGLE MAPS', 'background: #f44336; color: white; font-size: 16px; padding: 4px 8px;');
       console.error('%cRevisa que la API key sea válida y que no haya bloqueadores activados', 'font-size: 14px');
-    }
-    
-    // Cargar Google Maps con manejo de errores
+    }    // Cargar Google Maps con manejo de errores
     function loadGoogleMaps() {
       const script = document.createElement('script');
-      script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAsAUowinOWyylVW1BtnT-NWqS-l33LGxg&callback=gmapsLoaded";
+      
+      // Intentar obtener la API key desde diferentes fuentes
+      let apiKey;
+      
+      // Verificar si estamos en entorno Vite (desarrollo o producción)
+      if (typeof import.meta !== 'undefined' && import.meta.env) {
+        apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+      } 
+      // Si estamos en entorno de GitHub Codespaces, intentar obtener de las variables globales
+      else if (typeof process !== 'undefined' && process.env && process.env.GOOGLE_MAPS) {
+        apiKey = process.env.GOOGLE_MAPS;
+      }
+      
+      // Si no se encontró la API key, usar un valor de respaldo (esto debería cambiarse en producción)
+      if (!apiKey) {
+        console.warn('No se encontró la API key de Google Maps en las variables de entorno. Usando respaldo temporal.');
+        // En producción, este fallback debería eliminarse
+      }
+      
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey || ''}&callback=gmapsLoaded`;
       script.async = true;
       script.defer = true;
       script.onerror = gmapsError;
@@ -58,8 +75,8 @@
       }
     }(window.location))
   </script>
-  <script type="module" crossorigin src="/personal/assets/main-Q_oVyZMe.js"></script>
-  <link rel="stylesheet" crossorigin href="/personal/assets/main-CNTGJPLn.css">
+  <script type="module" crossorigin src="/personal/assets/main-4R00s8MJ.js"></script>
+  <link rel="stylesheet" crossorigin href="/personal/assets/main-BAu34AWX.css">
 </head>
 
 <body>  <div id="root"></div>
