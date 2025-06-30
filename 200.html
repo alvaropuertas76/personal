@@ -25,25 +25,12 @@
     function loadGoogleMaps() {
       const script = document.createElement('script');
       
-      // Intentar obtener la API key desde diferentes fuentes
-      let apiKey;
+      // Usamos directamente la API key original mientras arreglamos el problema
+      // Esta es una solución temporal para garantizar que el mapa funcione
+      const apiKey = "AIzaSyAsAUowinOWyylVW1BtnT-NWqS-l33LGxg";
+      console.log('Usando API key de Google Maps para debugging');
       
-      // Verificar si estamos en entorno Vite (desarrollo o producción)
-      if (typeof import.meta !== 'undefined' && import.meta.env) {
-        apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-      } 
-      // Si estamos en entorno de GitHub Codespaces, intentar obtener de las variables globales
-      else if (typeof process !== 'undefined' && process.env && process.env.GOOGLE_MAPS) {
-        apiKey = process.env.GOOGLE_MAPS;
-      }
-      
-      // Si no se encontró la API key, usar un valor de respaldo (esto debería cambiarse en producción)
-      if (!apiKey) {
-        console.warn('No se encontró la API key de Google Maps en las variables de entorno. Usando respaldo temporal.');
-        // En producción, este fallback debería eliminarse
-      }
-      
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey || ''}&callback=gmapsLoaded`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=gmapsLoaded`;
       script.async = true;
       script.defer = true;
       script.onerror = gmapsError;
@@ -75,7 +62,7 @@
       }
     }(window.location))
   </script>
-  <script type="module" crossorigin src="/personal/assets/main-4R00s8MJ.js"></script>
+  <script type="module" crossorigin src="/personal/assets/main-B5xYgQCB.js"></script>
   <link rel="stylesheet" crossorigin href="/personal/assets/main-BAu34AWX.css">
 </head>
 
