@@ -1,0 +1,14 @@
+{
+  "id": "ironman-frankfurt-2018",
+  "title": "Ironman Frankfurt",
+  "date": "2018-06-18",
+  "location": "Frankfurt, Germany",
+  "category": "Triathlon",
+  "distance": 226,
+  "time": "12:15:33",
+  "description": "Full distance triathlon including 3.8km swim, 180km bike, and 42.2km run.",
+  "coordinates": { "lat": 50.1109, "lng": 8.6821 },
+  "image": "./assets/images/ironman-frankfurt.jpeg",
+  "terrain": "Swim, bike, run",
+  "position": "876/2500"
+}

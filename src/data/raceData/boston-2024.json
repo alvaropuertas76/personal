@@ -1,0 +1,24 @@
+{
+  "id": "boston-2024",
+  "title": "Boston Marathon",
+  "date": "2024-04-15",
+  "location": "Boston, Massachusetts, USA",
+  "category": "Marathon",
+  "distance": 42.2,
+  "elevationGain": 150,
+  "time": "3:05:47",
+  "position": "1245/30000",
+  "description": "The world's oldest annual marathon and one of the World Marathon Majors.",
+  "coordinates": { "lat": 42.3472, "lng": -71.0845 },
+  "image": "./assets/images/boston-marathon.jpg",
+  "terrain": "Road, rolling hills",
+  "website": "https://www.baa.org/",
+  "highlight": true,
+  "garminData": {
+    "avgHeartRate": 162,
+    "maxHeartRate": 185,
+    "calories": 3150,
+    "avgPace": "4:23",
+    "activityLink": "https://connect.garmin.com/modern/activity/9876543210"
+  }
+}

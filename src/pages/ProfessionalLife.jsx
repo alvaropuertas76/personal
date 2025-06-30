@@ -125,8 +125,7 @@ function ProfessionalLife() {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 flex-shrink-0">
                     <img 
-                      src="./assets/images/logos/gekkogroup_logo.jpeg" 
-                      alt="Gekko Group logo" 
+                      src="./assets/images/logos/gekko_technology_brand_logo.jpeg"  alt="Gekko Tech logo" 
                       className="w-full h-full object-contain rounded"
                       onError={(e) => {
                         e.target.onerror = null;
@@ -134,12 +133,12 @@ function ProfessionalLife() {
                       }}
                     />
                   </div>
-                  <h3 className="text-xl font-bold">Gekko Group - Core Engine IT Manager</h3>
+                  <h3 className="text-xl font-bold">Gekko Tech - Core Engine IT Manager</h3>
                 </div>
                 <p className="text-gray-600">JUL 2025 - Presente</p>
               </div>
               <p className="text-gray-700 mb-4">
-                Como parte del núcleo del equipo digital, me enfoco en mejorar el rendimiento, la escalabilidad y la fiabilidad de nuestra plataforma de reservas. Mi rol implica optimizar el motor de reservas principal y mantener operaciones de búsqueda y reserva de alta disponibilidad y alto rendimiento. Trabajo extensamente en mejorar los pipelines de procesamiento de datos para asegurar un flujo de datos en tiempo real y un alto rendimiento, al mismo tiempo que colaboro en decisiones arquitectónicas y mejoras a nivel de sistema.<br /><br />                Las responsabilidades clave incluyen:<br /><br />
+                Perteneciente a Gekko Group ( Accor Group ) Como parte del núcleo del equipo digital, me enfoco en mejorar el rendimiento, la escalabilidad y la fiabilidad de nuestra plataforma de reservas. Mi rol implica optimizar el motor de reservas principal y mantener operaciones de búsqueda y reserva de alta disponibilidad y alto rendimiento. Trabajo extensamente en mejorar los pipelines de procesamiento de datos para asegurar un flujo de datos en tiempo real y un alto rendimiento, al mismo tiempo que colaboro en decisiones arquitectónicas y mejoras a nivel de sistema.<br /><br />                Las responsabilidades clave incluyen:<br /><br />
                 <ul className="list-disc pl-5">
                     <li>Liderar un equipo con enfoque en la entrega, la colaboración y la innovación.</li>
                     <li>Asegurar la entrega consistente y a tiempo de características y mejoras alineadas con las prioridades del negocio.</li>

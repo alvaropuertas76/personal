@@ -18,17 +18,16 @@ function MapSection({ coordinates, title, route }) {
       const mapElement = document.getElementById('race-map');
       if (!mapElement) {
         throw new Error('Elemento de mapa no encontrado');
-      }
-
-      if (!window.google || !window.google.maps) {
+      }      if (!window.google || !window.google.maps) {
         // Si superamos el máximo de intentos, mostrar error
-        if (attemptCount >= 20) {
-          throw new Error('No se pudo cargar la API de Google Maps');
+        if (attemptCount >= 8) {
+          throw new Error('No se pudo cargar la API de Google Maps después de varios intentos');
         }
         
         // Incrementar contador e intentar de nuevo
         setAttemptCount(prev => prev + 1);
-        mapTimerRef.current = setTimeout(initializeMap, 500);
+        console.log(`Intento ${attemptCount + 1} de cargar Google Maps API`);
+        mapTimerRef.current = setTimeout(initializeMap, 1000); // Aumentamos el tiempo entre intentos
         return;
       }
 

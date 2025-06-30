@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PLACEHOLDER_IMAGE, MAPS_CONFIG } from '../utils/constants';
 import MapSection from '../components/MapSection';
+import raceData from '../data/raceData';
 
-function RaceDetail() {  const { id } = useParams();
+function RaceDetail() {  
+  const { id } = useParams();
   const [race, setRace] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
@@ -14,9 +16,9 @@ function RaceDetail() {  const { id } = useParams();
     
     // Simulating API call to get race details
     setTimeout(() => {
-      // Mock race data based on ID
-      const raceData = mockRaceData.find(race => race.id === id) || null;
-        setRace(raceData);
+      // Find race data based on ID
+      const raceDetails = raceData.find(race => race.id === id) || null;
+      setRace(raceDetails);
       setLoading(false);
     }, 500);
   }, [id]);
@@ -491,132 +493,8 @@ function RaceDetail() {  const { id } = useParams();
             Back to all {race.category.toLowerCase()}
           </Link>
         </div>
-      </div>
-    </div>
+      </div>    </div>
   );
 }
-
-// Mock race data
-const mockRaceData = [
-  {
-    id: 'mds-2022',
-    title: 'Marathon des Sables',
-    date: '2022-04-25',
-    location: 'Sahara Desert, Morocco',
-    category: 'Staged Ultramarathon',
-    distance: 250,
-    elevationGain: 1200,
-    time: '41:25:13',
-    position: '145/1200',
-    description: '250km self-supported race across the Sahara Desert, known as "The Toughest Footrace on Earth".',
-    fullDescription: `<p>The Marathon des Sables is a legendary multi-stage ultramarathon held annually in the Sahara Desert of Morocco. The race spans approximately 250 kilometers (155 miles) over 6 stages, with runners required to carry all their own food, sleeping gear, and supplies.</p>
-    <p>Each participant carries a backpack containing all essential survival equipment, food, and personal items. The only assistance provided is limited water rations and tents to sleep in at night. The harsh desert conditions include temperatures that can exceed 50°C (122°F) during the day and drop dramatically at night.</p>
-    <p>The course traverses a variety of desert terrain including sand dunes, rocky plains, mountains, and dried river beds. The longest single stage, known as the "long march," typically covers around 80-90km and must be completed in one continuous effort.</p>`,
-    experience: 'This was my first self-supported stage race and easily the most challenging race I\'ve ever completed. The combination of extreme heat, sand dunes, and carrying all supplies created a unique physical and mental challenge. The camaraderie among participants was incredible, with everyone supporting each other through the toughest moments.',
-    challenges: 'The biggest challenges were managing water consumption in 45°C heat, dealing with severe blisters after stage 3, and the mental fatigue during the 86km long stage that took me over 20 hours to complete.',    coordinates: { lat: 31.1566, lng: -4.2569 },
-    image: './assets/images/mds2022.jpg',
-    headerImage: './assets/images/mds-header.jpg',
-    terrain: 'Desert, sand dunes, rocky plains',
-    website: 'https://www.marathondessables.com/',
-    stravaActivity: 'https://www.strava.com/activities/1234567890',
-    stravaActivityStage1: 'https://www.strava.com/activities/1234567892',
-    stravaActivityStage2: 'https://www.strava.com/activities/1234567895',
-    stravaActivityStage3: 'https://www.strava.com/activities/1234567894',
-    stravaActivityStage4: 'https://www.strava.com/activities/1234567898',
-    stravaActivityStage5: 'https://www.strava.com/activities/1234567897',
-    stravaActivityStage6: 'https://www.strava.com/activities/1234567899',    highlight: true,
-    photos: [
-      { url: './assets/images/mds-1.jpg', caption: 'Starting line at dawn' },
-      { url: './assets/images/mds-2.jpg', caption: 'Crossing the endless dunes' },
-      { url: './assets/images/mds-3.jpg', caption: 'Reaching the finish line' },
-      { url: './assets/images/mds-4.jpg', caption: 'The camp at night' }
-    ],
-    splits: [
-      { distance: 'Stage 1 (32km)', time: '4:12:35', pace: '7:54/km' },
-      { distance: 'Stage 2 (38km)', time: '5:23:12', pace: '8:30/km' },
-      { distance: 'Stage 3 (31km)', time: '4:56:41', pace: '9:34/km' },
-      { distance: 'Stage 4 (86km)', time: '20:14:55', pace: '14:08/km' },
-      { distance: 'Stage 5 (42.2km)', time: '6:37:50', pace: '9:25/km' }
-    ],
-    garminData: {
-      avgHeartRate: 148,
-      maxHeartRate: 175,
-      calories: 28500,
-      avgPace: '9:45',
-      activityLink: 'https://connect.garmin.com/modern/activity/1234567890'
-    },
-    nutrition: 'Freeze-dried meals averaging 2000 calories per day, supplemented with energy bars, nuts, and electrolyte tablets. I consumed approximately 8-10 liters of water daily.',
-    lessons: 'Proper foot care is essential - preventative taping saved my race. Pack calories, not weight. Mental resilience matters more than physical preparation in the later stages.'
-  },
-  {
-    id: 'boston-2024',
-    title: 'Boston Marathon',
-    date: '2024-04-15',
-    location: 'Boston, Massachusetts, USA',
-    category: 'Marathon',
-    distance: 42.2,
-    elevationGain: 150,
-    time: '3:05:47',
-    position: '1245/30000',
-    description: 'The world\'s oldest annual marathon and one of the World Marathon Majors.',
-    coordinates: { lat: 42.3472, lng: -71.0845 },
-    image: './assets/images/boston-marathon.jpg',
-    terrain: 'Road, rolling hills',
-    website: 'https://www.baa.org/',
-    highlight: true,
-    garminData: {
-      avgHeartRate: 162,
-      maxHeartRate: 185,
-      calories: 3150,
-      avgPace: '4:23',
-      activityLink: 'https://connect.garmin.com/modern/activity/9876543210'
-    }
-  },
-  {
-    id: 'utmb-2023',
-    title: 'Ultra-Trail du Mont-Blanc',
-    date: '2023-08-25',
-    location: 'Chamonix, France',
-    category: 'Ultramarathon',
-    distance: 171,
-    elevationGain: 10000,
-    time: '36:45:22',
-    position: '235/2300',
-    description: 'The iconic mountain ultramarathon around Mont Blanc through France, Italy, and Switzerland.',
-    coordinates: { lat: 45.9237, lng: 6.8694 },
-    image: './assets/images/utmb.jpg',
-    terrain: 'Mountain trails, technical alpine terrain',
-    highlight: true
-  },
-  {
-    id: 'ironman-frankfurt-2018',
-    title: 'Ironman Frankfurt',
-    date: '2018-06-18',
-    location: 'Frankfurt, Germany',
-    category: 'Triathlon',
-    distance: 226,
-    time: '12:15:33',
-    description: 'Full distance triathlon including 3.8km swim, 180km bike, and 42.2km run.',
-    coordinates: { lat: 50.1109, lng: 8.6821 },
-    image: './assets/images/ironman-frankfurt.jpeg',
-    terrain: 'Swim, bike, run',
-    position: '876/2500'
-  },
-  {
-    id: 'fire-ice-ultra-2018',
-    title: 'Fire & Ice Ultra',
-    date: '2018-08-29',
-    location: 'Iceland',
-    category: 'Staged Ultramarathon',
-    distance: 250,
-    elevationGain: 6000,
-    time: '39:12:44',
-    description: '250km self-supported race through Iceland\'s volcanic terrain and glacial rivers.',
-    coordinates: { lat: 64.9631, lng: -19.0208 },
-    image: './assets/images/fire-ice.jpg',
-    terrain: 'Volcanic trails, rivers, glaciers',
-    highlight: true
-  }
-];
 
 export default RaceDetail;

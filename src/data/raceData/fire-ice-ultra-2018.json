@@ -1,0 +1,15 @@
+{
+  "id": "fire-ice-ultra-2018",
+  "title": "Fire & Ice Ultra",
+  "date": "2018-08-29",
+  "location": "Iceland",
+  "category": "Staged Ultramarathon",
+  "distance": 250,
+  "elevationGain": 6000,
+  "time": "39:12:44",
+  "description": "250km self-supported race through Iceland's volcanic terrain and glacial rivers.",
+  "coordinates": { "lat": 64.9631, "lng": -19.0208 },
+  "image": "./assets/images/fire-ice.jpg",
+  "terrain": "Volcanic trails, rivers, glaciers",
+  "highlight": true
+}
